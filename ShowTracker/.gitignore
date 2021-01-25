@@ -1,0 +1,11 @@
+out
+bin
+files
+.idea
+.settings
+.metadata
+ShowTracker.iml
+.classpath
+.project
+**/.DS_Store*
+/src/showtracker/server/Test.java
