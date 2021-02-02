@@ -65,6 +65,7 @@ public class ShowInfo extends JPanel {
     }
 
     private void draw() {
+
         mainPanel.removeAll();
         for (SeasonListener sl : listeners) {
             JPanel panel = new JPanel();

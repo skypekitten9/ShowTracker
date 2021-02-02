@@ -43,7 +43,6 @@ public class Profile extends JPanel {
         JLabel inputName = new JLabel(user.getUserName());
 
         JLabel namn = new JLabel("   Username:  ");
-        JLabel mail = new JLabel("   Email:  ");
 
         panel.add(namn);
         panel.add(inputName);
@@ -122,13 +121,13 @@ public class Profile extends JPanel {
 
         JCheckBox check = new JCheckBox("Show password");
 
-        JLabel label1 = new JLabel("Current password");
-        JLabel label2 = new JLabel("New password");
+        JLabel lblCurrentPassWord = new JLabel("Current password");
+        JLabel lblNewPassWord = new JLabel("New password");
 
-        panel.add(label1);
+        panel.add(lblCurrentPassWord);
         panel.add(tfConfirmPassword);
 
-        panel.add(label2);
+        panel.add(lblNewPassWord);
         panel.add(password);
 
         panel.add(check);
