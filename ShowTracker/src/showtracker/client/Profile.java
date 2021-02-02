@@ -14,201 +14,154 @@ import showtracker.User;
 
 public class Profile extends JPanel {
 
-	private ClientController cc;
-	private User user;
-	private Helper helper = new Helper();
-	private ImageIcon image;
-	private JPanel southPanel;
+    private ClientController cc;
+    private User user;
+    private Helper helper = new Helper();
+    private ImageIcon image;
+    private JPanel southPanel;
 
-	private JLabel inputMail;
+    private JTextField tfConfirmPassword;
+    private JPasswordField password;
 
-	private JTextField tfChangeMail;
-	private JTextField tfConfirmPassword;
+    public Profile(ClientController cc) {
+        this.cc = cc;
+        this.setLayout(new BorderLayout());
+    }
 
-	private JPasswordField password;
+    public void draw() {
+        user = cc.getUser();
+        add(profilePanel(), BorderLayout.NORTH);
+        add(textFieldPanel(), BorderLayout.CENTER);
+        changePanel();
+        add(southPanel, BorderLayout.SOUTH);
+    }
 
-	public Profile(ClientController cc) {
-		this.cc = cc;
-		this.setLayout(new BorderLayout());
-	}
+    public JPanel textFieldPanel() {
+        JPanel panel = new JPanel();
 
-	public void draw() {
-		user = cc.getUser();
-		add(profilePanel(), BorderLayout.NORTH);
-		add(textFieldPanel(), BorderLayout.CENTER);
-		changePanel();
-		add(southPanel, BorderLayout.SOUTH);
-	}
+        panel.setLayout(new GridLayout(2, 2, 6, 1));
+        JLabel inputName = new JLabel(user.getUserName());
 
-	public JPanel textFieldPanel() {
-		JPanel panel = new JPanel();
+        JLabel namn = new JLabel("   Username:  ");
+        JLabel mail = new JLabel("   Email:  ");
 
-		panel.setLayout(new GridLayout(2, 2, 6, 1));
-		JLabel inputName = new JLabel(user.getUserName());
-		inputMail = new JLabel(user.getEmail());
+        panel.add(namn);
+        panel.add(inputName);
 
-		JLabel namn = new JLabel("   Username:  ");
-		JLabel mail = new JLabel("   Email:  ");
-		tfChangeMail = new JTextField();
+        return panel;
 
-		panel.add(namn);
-		panel.add(inputName);
+    }
 
-		panel.add(mail);
-		panel.add(inputMail);
+    private void changePanel() {
+        southPanel = new JPanel(new BorderLayout());
+        JPanel panel = new JPanel();
 
-		return panel;
+        JButton btnChangePass = new JButton("Change Password?");
+        panel.add(btnChangePass);
 
-	}
-
-	private void changePanel() {
-		southPanel = new JPanel(new BorderLayout());
-		JPanel panel = new JPanel();
-
-		JButton btnChangeEmail = new JButton("Change Email?");
-		JButton btnChangePass = new JButton("Change Password?");
-
-		panel.add(btnChangeEmail);
-		panel.add(btnChangePass);
-
-		southPanel.add(panel, BorderLayout.SOUTH);
-
-		btnChangeEmail.addActionListener(new ActionListener() {
-			@SuppressWarnings("static-access")
-			public void actionPerformed(ActionEvent evt) {
-				int res = JOptionPane.showConfirmDialog(null, changeEmailPanel(), "Change Email",
-						JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
-
-				while (!(helper.checkEmailValidity(tfChangeMail.getText())) && res == JOptionPane.OK_OPTION) {
-
-					if (!helper.checkEmailValidity(tfChangeMail.getText()))
-						JOptionPane.showMessageDialog(null, "Email not valid!", "No Email",
-								JOptionPane.WARNING_MESSAGE);
-
-					res = JOptionPane.showConfirmDialog(null, changeEmailPanel(), "Email", JOptionPane.OK_CANCEL_OPTION,
-							JOptionPane.PLAIN_MESSAGE);
-				}
-
-				if (res == JOptionPane.OK_OPTION) {
-					user.setEmail(tfChangeMail.getText());
-					inputMail.setText(user.getEmail());
-				}
-
-			}
-		});
-
-		btnChangePass.addActionListener(new ActionListener() {
-			@SuppressWarnings("static-access")
-			public void actionPerformed(ActionEvent e) {
-
-				int res = JOptionPane.showConfirmDialog(null, changePasswordPanel(), "Change password!",
-						JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
-
-				while (!(helper.checkPasswordValidity(password.getText())) && res == JOptionPane.OK_OPTION) {
-
-					if (!helper.checkPasswordValidity(password.getText()))
-						JOptionPane.showMessageDialog(null,
-								"Your password must contain at least 8 charachters, \n one capital letter,"
-										+ " one small letter and one digit!",
-								"Weak password", JOptionPane.WARNING_MESSAGE);
+        southPanel.add(panel, BorderLayout.SOUTH);
 
 
-					res = JOptionPane.showConfirmDialog(null, changePasswordPanel(), "Change password!",
-							JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
-				}
+        btnChangePass.addActionListener(new ActionListener() {
+            @SuppressWarnings("static-access")
+            public void actionPerformed(ActionEvent e) {
 
-				if (res == JOptionPane.OK_OPTION) {
-					String reply = cc.updatePassword(user.getUserName(), tfConfirmPassword.getText(), new String(password.getText()));
-					if(reply.equals("Password changed"))
-					JOptionPane.showMessageDialog(null, reply, "Request approved", JOptionPane.INFORMATION_MESSAGE);
-					else {
-						JOptionPane.showMessageDialog(null, reply, "Error", JOptionPane.ERROR_MESSAGE);
-					}
-				}
-			}
-		});
+                int res = JOptionPane.showConfirmDialog(null, changePasswordPanel(), "Change password!",
+                        JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
 
-	}
+                while (!(helper.checkPasswordValidity(password.getText())) && res == JOptionPane.OK_OPTION) {
 
-	private JPanel changeEmailPanel() {
-		JPanel panel = new JPanel();
-		JLabel changeMail = new JLabel("Enter your email");
+                    if (!helper.checkPasswordValidity(password.getText()))
+                        JOptionPane.showMessageDialog(null,
+                                "Your password must contain at least 8 charachters, \n one capital letter,"
+                                        + " one small letter and one digit!",
+                                "Weak password", JOptionPane.WARNING_MESSAGE);
 
-		panel.setLayout(new BorderLayout());
 
-		panel.add(changeMail, BorderLayout.NORTH);
-		panel.add(tfChangeMail, BorderLayout.CENTER);
+                    res = JOptionPane.showConfirmDialog(null, changePasswordPanel(), "Change password!",
+                            JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+                }
 
-		return panel;
-	}
+                if (res == JOptionPane.OK_OPTION) {
+                    String reply = cc.updatePassword(user.getUserName(), tfConfirmPassword.getText(), new String(password.getText()));
+                    if (reply.equals("Password changed"))
+                        JOptionPane.showMessageDialog(null, reply, "Request approved", JOptionPane.INFORMATION_MESSAGE);
+                    else {
+                        JOptionPane.showMessageDialog(null, reply, "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
+            }
+        });
 
-	public JPanel profilePanel() {
-		image = getUserProfilePicture();
-		JLabel imageLabel = new JLabel(image);
+    }
 
-		JPanel topPanel = new JPanel();
+    public JPanel profilePanel() {
+        image = getUserProfilePicture();
+        JLabel imageLabel = new JLabel(image);
 
-		topPanel.setLayout(new GridLayout(1, 1, 1, 1));
-		topPanel.add(imageLabel);
+        JPanel topPanel = new JPanel();
 
-		return topPanel;
-	}
+        topPanel.setLayout(new GridLayout(1, 1, 1, 1));
+        topPanel.add(imageLabel);
 
-	public ImageIcon getUserProfilePicture() {
-		return user.getProfilePicture();
-	}
+        return topPanel;
+    }
 
-	public JPanel changePasswordPanel() {
+    public ImageIcon getUserProfilePicture() {
+        return user.getProfilePicture();
+    }
 
-		JPanel panel = new JPanel();
-		panel.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		panel.setLayout(new GridLayout(3, 2, 2, 2));
+    public JPanel changePasswordPanel() {
 
-		password = new JPasswordField();
-		tfConfirmPassword = new JTextField();
+        JPanel panel = new JPanel();
+        panel.setFont(new Font("Tahoma", Font.PLAIN, 20));
+        panel.setLayout(new GridLayout(3, 2, 2, 2));
 
-		JCheckBox check = new JCheckBox("Show password");
+        password = new JPasswordField();
+        tfConfirmPassword = new JTextField();
 
-		JLabel label1 = new JLabel("Current password");
-		JLabel label2 = new JLabel("New password");
+        JCheckBox check = new JCheckBox("Show password");
 
-		panel.add(label1);
-		panel.add(tfConfirmPassword);
+        JLabel label1 = new JLabel("Current password");
+        JLabel label2 = new JLabel("New password");
 
-		panel.add(label2);
-		panel.add(password);
+        panel.add(label1);
+        panel.add(tfConfirmPassword);
 
-		panel.add(check);
+        panel.add(label2);
+        panel.add(password);
 
-		check.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (check.isSelected()) {
-					password.setEchoChar((char) 0);
-				} else {
-					password.setEchoChar('*');
-				}
-			}
-		});
+        panel.add(check);
 
-		return panel;
-	}
+        check.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if (check.isSelected()) {
+                    password.setEchoChar((char) 0);
+                } else {
+                    password.setEchoChar('*');
+                }
+            }
+        });
 
-	public static void main(String[] args) throws Exception {
-		ClientController cc = new ClientController();
-		User user = new User("namn", "email", null);
-		cc.setUser(user);
+        return panel;
+    }
 
-		Profile profile = new Profile(cc);
-		profile.draw();
-		JFrame frame = new JFrame();
-		frame.setTitle("Profile");
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.add(profile);
-		frame.setLocationRelativeTo(null);
+    public static void main(String[] args) throws Exception {
+        ClientController cc = new ClientController();
+        User user = new User("namn", null);
+        cc.setUser(user);
 
-		frame.setVisible(true);
-		frame.pack();
-		frame.setSize(350, 500);
+        Profile profile = new Profile(cc);
+        profile.draw();
+        JFrame frame = new JFrame();
+        frame.setTitle("Profile");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.add(profile);
+        frame.setLocationRelativeTo(null);
 
-	}
+        frame.setVisible(true);
+        frame.pack();
+        frame.setSize(350, 500);
+
+    }
 }

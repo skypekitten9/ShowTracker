@@ -106,7 +106,7 @@ public class ClientController {
 
     public void setButtonsEnabled(boolean enabled) {
         Component[] buttons = bottomPanel.getComponents();
-        for (Component c: buttons)
+        for (Component c : buttons)
             c.setEnabled(enabled);
     }
 
@@ -115,10 +115,10 @@ public class ClientController {
         return (User) connection.packEnvelope(userInfo, "logIn");
     }
 
-    public void signUp(String username, String password, String email) {
-        String[] userInfo = {username, password, email};
+    public void signUp(String username, String password) {
+        String[] userInfo = {username, password};
         connection.packEnvelope(userInfo, "signUp");
-        finalizeUser(new User(username, email, null));
+        finalizeUser(new User(username, null));
     }
 
     public void finalizeUser(User user) {
@@ -132,7 +132,7 @@ public class ClientController {
         String[] updatePassword = {username, oldPassword, newPassword};
         return (String) connection.packEnvelope(updatePassword, "updatePassword");
     }
-    
+
 
     public Show updateShow(Show show) {
         return (Show) connection.packEnvelope(show, "updateShow");

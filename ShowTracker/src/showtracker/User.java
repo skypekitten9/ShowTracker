@@ -9,14 +9,14 @@ public class User implements Serializable {
 
     private static final long serialVersionUID = -6358452193067562790L;
     private transient ImageIcon profilePicture = null;
-    private String userName, userPassword, userEmail;
+    private String userName;
+    private String userPassword;
 
     private ArrayList<Show> shows = new ArrayList<>();
 
-    public User(String userName, String userEmail, ImageIcon profilePicture) {
+    public User(String userName, ImageIcon profilePicture) {
         this.userName = userName;
         this.profilePicture = profilePicture;
-        this.userEmail = userEmail;
     }
 
     public void setUserName(String userName) {
@@ -29,14 +29,6 @@ public class User implements Serializable {
 
     public void setProfilePicture(ImageIcon profilePicture) {
         this.profilePicture = new ImageIcon();
-    }
-
-    public void setEmail(String userEmail) {
-        this.userEmail = userEmail;
-    }
-
-    public String getEmail() {
-        return userEmail;
     }
 
     public ImageIcon getProfilePicture() {
@@ -79,15 +71,7 @@ public class User implements Serializable {
         return shows;
     }
 
-//	public boolean containsShow(Show show) {
-//		return shows.contains(show);
-//	}
-
     public boolean containsShow(Show show) {
         return shows.contains(show);
     }
-    
-
-//	public ArrayLi
-
 }
