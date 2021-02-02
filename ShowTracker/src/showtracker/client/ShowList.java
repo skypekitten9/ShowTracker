@@ -45,9 +45,9 @@ public class ShowList extends JPanel {
     }
 
     void drawShowList(ArrayList<Show> shows) {
-        GridBagConstraints gbc = new GridBagConstraints();
-        panelShowList.setLayout(new GridBagLayout());
-        gbc.fill = GridBagConstraints.HORIZONTAL;
+            GridBagConstraints gbc = new GridBagConstraints();
+            panelShowList.setLayout(new GridBagLayout());
+            gbc.fill = GridBagConstraints.HORIZONTAL;
 
         panelShowList.removeAll();
         if (shows.size() > 0) {
@@ -104,7 +104,7 @@ public class ShowList extends JPanel {
             panelShowList.add(panel, gbc);
 
         } else {
-            panelShowList.add(new JLabel("   Kunde inte hitta show med angivet namn !!"));
+            panelShowList.add(new JLabel("   Your list of shows is empty!   "));
 
         }
         scrollPanel.setViewportView(panelShowList);

@@ -85,11 +85,8 @@ public class Home extends JPanel {
         ImageIcon logoImgIcon = new ImageIcon(logoImg);
         JLabel imageLabel = new JLabel(logoImgIcon);
 
-
         logoPanel.setLayout(new BorderLayout());
-
         logoPanel.add(imageLabel, BorderLayout.CENTER);
-
 
         return logoPanel;
     }
