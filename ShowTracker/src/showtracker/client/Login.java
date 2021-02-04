@@ -91,11 +91,15 @@ public class Login extends JPanel {
         pfPasswordSignUp = new JPasswordField(20);
         JCheckBox check = new JCheckBox("Show password");
 
+        JLabel lblPwdRestrictions = new JLabel("Password restrictions:" + "\n" + "At least 8 charachters, 1 capital letter, 1 small letter and 1 digit.");
+
         panel.add(usernameLabel);
         panel.add(tfUsernameSignUp);
         panel.add(userPasswordLabel);
         panel.add(pfPasswordSignUp);
+        panel.add(lblPwdRestrictions);
         panel.add(check);
+
 
         check.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
