@@ -42,7 +42,7 @@ public class Home extends JPanel {
         scrollPane.getViewport().removeAll();
         //jvp.removeAll();
         Box box = Box.createVerticalBox();
-        for (Show s: cc.getUser().getShows())
+        for (Show s : cc.getUser().getShows())
             System.out.println(s.getLastWatched());
         Collections.sort(cc.getUser().getShows(), new Helper.LastWatchedComparator());
         for (Show sh : cc.getUser().getShows()) {
@@ -75,23 +75,20 @@ public class Home extends JPanel {
         scrollPane.revalidate();
         scrollPane.repaint();
     }
-    
-    public JPanel logoPanel() {
-    	JPanel logoPanel = new JPanel();
-//    	ImageIcon img = new ImageIcon("images/logo.jpg");
-    	
-    	ImageIcon logoImage = new ImageIcon("images/logo.jpg");
-		Image logoImg = logoImage.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
-		ImageIcon logoImgIcon = new ImageIcon(logoImg);
-    	JLabel imageLabel = new JLabel(logoImgIcon);
 
-    	
-    	logoPanel.setLayout(new BorderLayout());
-    	
-    	logoPanel.add(imageLabel, BorderLayout.CENTER);
-    	
-    	
-    	return logoPanel;
+    public JPanel logoPanel() {
+        JPanel logoPanel = new JPanel();
+//    	ImageIcon img = new ImageIcon("images/logo.jpg");
+
+        ImageIcon logoImage = new ImageIcon("images/logo.jpg");
+        Image logoImg = logoImage.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+        ImageIcon logoImgIcon = new ImageIcon(logoImg);
+        JLabel imageLabel = new JLabel(logoImgIcon);
+
+        logoPanel.setLayout(new BorderLayout());
+        logoPanel.add(imageLabel, BorderLayout.CENTER);
+
+        return logoPanel;
     }
 
     private class EpisodeListener implements ActionListener {

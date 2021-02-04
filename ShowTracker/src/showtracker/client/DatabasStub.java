@@ -9,7 +9,7 @@ import showtracker.Show;
 import showtracker.User;
 
 public class DatabasStub {
-	private ArrayList <Show> shows = new ArrayList <Show>();
+    private ArrayList<Show> shows = new ArrayList<Show>();
 
 	/*public DatabasStub() {
 		fyllShows();
@@ -64,49 +64,49 @@ public class DatabasStub {
 		return shows;
 	}*/
 
-	public boolean containsShow(Show show) {
-		return shows.contains(show);
-	}
+    public boolean containsShow(Show show) {
+        return shows.contains(show);
+    }
 
-	public static JPanel buttonPanel (JButton b1, JButton b2,JButton b3,JButton b4,JButton b5) {
-		JPanel jp = new JPanel();
+    public static JPanel buttonPanel(JButton b1, JButton b2, JButton b3, JButton b4, JButton b5) {
+        JPanel jp = new JPanel();
 
-		return null;
-	}
+        return null;
+    }
 
-	public static ArrayList<Show> getShows() {
-		ArrayList<Show> shows = new ArrayList<>();
-		shows.add(new Show("Game of Thrones"));
-		shows.add(new Show("Game of Vikings"));
-		shows.add(new Show("Prison break"));
-		shows.add(new Show("Breaking bad"));
-		shows.add(new Show("Vikings"));
-		shows.add(new Show("Musti"));
-		shows.add(new Show("1"));
-		shows.add(new Show("2"));
-		shows.add(new Show("3"));
-		shows.add(new Show("4"));
-		shows.add(new Show("5"));
-		shows.add(new Show("6"));
+    public static ArrayList<Show> getShows() {
+        ArrayList<Show> shows = new ArrayList<>();
+        shows.add(new Show("Game of Thrones"));
+        shows.add(new Show("Game of Vikings"));
+        shows.add(new Show("Prison break"));
+        shows.add(new Show("Breaking bad"));
+        shows.add(new Show("Vikings"));
+        shows.add(new Show("Musti"));
+        shows.add(new Show("1"));
+        shows.add(new Show("2"));
+        shows.add(new Show("3"));
+        shows.add(new Show("4"));
+        shows.add(new Show("5"));
+        shows.add(new Show("6"));
 
-		return shows;
-	}
+        return shows;
+    }
 
-	public static ArrayList<Show> getShowsFromFile() {
-		ArrayList<Show> shows = new ArrayList<>();
-		Show s = (Show) Helper.readFromFile("files/venture_bros.obj");
-		shows.add(s);
-		return shows;
-	}
+    public static ArrayList<Show> getShowsFromFile() {
+        ArrayList<Show> shows = new ArrayList<>();
+        Show s = (Show) Helper.readFromFile("files/venture_bros.obj");
+        shows.add(s);
+        return shows;
+    }
 
-	public static ArrayList<User> getUsers() {
-		ArrayList<User> userAL = new ArrayList<User>();
+    public static ArrayList<User> getUsers() {
+        ArrayList<User> userAL = new ArrayList<User>();
 		/*User user1 = new User("namn1", "losenord1", "email1", new ImageIcon("images/defaultPicture.jpg"));
 		User user2 = new User("namn2", "losenord2", "email2", new ImageIcon("images/defaultPicture.jpg"));
 		User user3 = new User("namn3", "losenord3", "email3", new ImageIcon("images/defaultPicture.jpg"));*
 		userAL.add(user1);
 		userAL.add(user2);
 		userAL.add(user3);*/
-		return userAL;
-	}
+        return userAL;
+    }
 }
