@@ -75,7 +75,7 @@ public class Controller {
         String password = users.get(userInfo[0]);
         if (password.equals(userInfo[1])) {
             users.put(userInfo[0], userInfo[2]);
-
+            Helper.writeToFile(users, "files/users/" + userInfo[0] + ".usr" ); ///
             return new Envelope("Password changed", "reply");
         } else {
             return new Envelope("No match with current password!", "reply");
