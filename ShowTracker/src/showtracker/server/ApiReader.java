@@ -29,9 +29,8 @@ public class ApiReader {
     }
 
     public void getSeasons(){
-        System.out.println("Mata in en serie eller film i konsolen! ");
-
-        System.out.println("Mata in säsong: ");
+        System.out.println("Mata först in en serie/film och tryck Enter! \nMata sedan in säsongen du vill ha info om! ");
+        System.out.println("(Säsongen kan endast skrivas som en siffra)");
 
         System.out.println(url+s1.nextLine()+season+s2.nextInt()+json+apiKey);
     }
