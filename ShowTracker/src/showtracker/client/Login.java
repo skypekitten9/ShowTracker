@@ -67,19 +67,24 @@ public class Login extends JPanel {
                 && checkUsernameValidity(tfUsernameSignUp.getText())
                 && res == JOptionPane.OK_OPTION)) {
 
-            if (!checkUsernameValidity(tfUsernameSignUp.getText()))
+            if (!checkUsernameValidity(tfUsernameSignUp.getText()) &&  res == JOptionPane.OK_OPTION)
                 JOptionPane.showMessageDialog(null, "Username not valid!", "No Username", JOptionPane.WARNING_MESSAGE);
 
-            if (!checkPasswordValidity(new String(pfPasswordSignUp.getPassword())))
+            if (!checkPasswordValidity(new String(pfPasswordSignUp.getPassword()))&& res == JOptionPane.OK_OPTION)
                 JOptionPane.showMessageDialog(null, "Your password must contain at least 8 charachters, "
                         + "\none capital letter, one small letter and one digit!", "No Password!", JOptionPane.WARNING_MESSAGE);
 
-            res = JOptionPane.showConfirmDialog(null, createAccount(), "Sign Up!", JOptionPane.OK_CANCEL_OPTION,
-                    JOptionPane.PLAIN_MESSAGE);
+           // res = JOptionPane.showConfirmDialog(null, createAccount(), "Sign Up!", JOptionPane.OK_CANCEL_OPTION,
+             //       JOptionPane.PLAIN_MESSAGE);
         }
 
-        if (res == JOptionPane.OK_OPTION)
-            cc.signUp(tfUsernameSignUp.getText(), new String(pfPasswordSignUp.getPassword()));
+        if (res == JOptionPane.OK_OPTION){
+            cc.signUp(tfUsernameSignUp.getText(), new String(pfPasswordSignUp.getPassword()));}
+        else if(res == JOptionPane.CANCEL_OPTION){
+            JOptionPane.getRootFrame().dispose();
+            new Login(cc);
+
+        }
     }
 
     public JPanel createAccount() {
