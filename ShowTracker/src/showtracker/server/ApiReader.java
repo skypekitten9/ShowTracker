@@ -42,7 +42,9 @@ public class ApiReader {
     public static void main(String[] args) throws IOException {
         ApiReader api = new ApiReader();
        // api.seasonsAndEpisodes();
-       // api.getSeasons();
+        //api.getSeasons();
+        System.out.println("Mata först in en serie/film och tryck Enter! \nMata sedan in säsongen du vill ha info om! ");
+        System.out.println("(Säsongen kan endast skrivas som en siffra)");
         URL url = new URL(api.url+api.s1.nextLine()+api.season+api.s2.nextInt()+api.json+api.apiKey);
         System.out.println(url);
        // URL url = new URL("http://www.omdbapi.com/?t=&apikey=be9629f");
@@ -53,7 +55,10 @@ public class ApiReader {
         connection.setReadTimeout(5000);
 
         int status = connection.getResponseCode();
-        System.out.println(status);
+        System.out.print("Response: "+status);
+        if (status<299){
+            System.out.println(" success!");
+        }
 
     }
 }
