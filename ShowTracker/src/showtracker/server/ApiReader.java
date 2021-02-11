@@ -20,7 +20,7 @@ public class ApiReader {
 
     private Scanner s1 = new Scanner(System.in);
     private Scanner s2 = new Scanner(System.in);
-    private Scanner s3 = new Scanner(System.in);
+    //private Scanner s3 = new Scanner(System.in);
 
     public void seasonsAndEpisodes(){
         System.out.println("Mata in en serie eller film i konsolen! ");
@@ -29,7 +29,7 @@ public class ApiReader {
 
         System.out.println("Mata in avsnitt: ");
 
-        System.out.println(url+s1.nextLine()+season+s2.nextInt()+episode+s3.nextInt()+json+apiKey);
+        //System.out.println(url+s1.nextLine()+season+s2.nextInt()+episode+s3.nextInt()+json+apiKey);
     }
 
     public void getSeasons(){
@@ -42,9 +42,10 @@ public class ApiReader {
     public static void main(String[] args) throws IOException {
         ApiReader api = new ApiReader();
        // api.seasonsAndEpisodes();
-        api.getSeasons();
-       // URL url = new URL(api.url+api.s1.nextLine()+api.season+api.s2.nextInt()+api.json+api.apiKey);
-        URL url = new URL("http://www.omdbapi.com/?t=&apikey=be9629f");
+       // api.getSeasons();
+        URL url = new URL(api.url+api.s1.nextLine()+api.season+api.s2.nextInt()+api.json+api.apiKey);
+        System.out.println(url);
+       // URL url = new URL("http://www.omdbapi.com/?t=&apikey=be9629f");
         connection = (HttpURLConnection) url.openConnection();
 
         connection.setRequestMethod("GET");
