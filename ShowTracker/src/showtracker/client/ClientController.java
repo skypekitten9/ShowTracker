@@ -93,7 +93,7 @@ public class ClientController {
             pnlProfile.draw();
             //A new code to make a log out confirmation
         else if (user != null && panel.equals("Logout")) {
-            int confirmDialog = JOptionPane.showConfirmDialog(null, "Get da fak out of here ლ(ಠ_ಠლ) ?", "Confirmation", JOptionPane.YES_NO_OPTION);
+            int confirmDialog = JOptionPane.showConfirmDialog(null, "Are you sure you want log out?", "Confirmation", JOptionPane.YES_NO_OPTION);
             if (confirmDialog == 0) {
                 setButtonsEnabled(false);
                 pnlLogin.draw();
