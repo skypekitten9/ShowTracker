@@ -91,13 +91,28 @@ public class ClientController {
             pnlShowList.draw();
         else if (panel.equals("Profile"))
             pnlProfile.draw();
-        else if (panel.equals("Logout")) {
-            setButtonsEnabled(false);
+            //A new code to make a log out confirmation
+        else if (user != null && panel.equals("Logout")) {
+            int confirmDialog = JOptionPane.showConfirmDialog(null, "Are you sure you want log out?", "Confirmation", JOptionPane.YES_NO_OPTION);
+            if (confirmDialog == 0) {
+                setButtonsEnabled(false);
+                pnlLogin.draw();
+                pnlLogin.revalidate();
+                if (user != null)
+                    new Thread(() -> updateUser(user)).run();
+            } else if (confirmDialog == 1) {
+                return;
+            }//The end of the new code
+
+            /*The old shit
+            else if ( user != null && panel.equals("Logout")) {
+            /*setButtonsEnabled(false);
             pnlLogin.draw();
             pnlLogin.revalidate();
             if (user != null)
                 new Thread(() -> updateUser(user)).run();
-            //startApplication();
+            //startApplication();}*/
+
         } else if (panel.equals("Info"))
             centerPanel.add(new ShowInfo(s, this), "Info");
 
