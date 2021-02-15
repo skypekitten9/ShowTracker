@@ -60,6 +60,7 @@ public class Login extends JPanel {
 
 
     private void signUp() {
+        
         int res = JOptionPane.showConfirmDialog(null, createAccount(), "Sign Up!", JOptionPane.OK_CANCEL_OPTION,
                 JOptionPane.PLAIN_MESSAGE);
 
@@ -76,13 +77,14 @@ public class Login extends JPanel {
 
            // res = JOptionPane.showConfirmDialog(null, createAccount(), "Sign Up!", JOptionPane.OK_CANCEL_OPTION,
              //       JOptionPane.PLAIN_MESSAGE);
+            break;
         }
 
         if (res == JOptionPane.OK_OPTION){
             cc.signUp(tfUsernameSignUp.getText(), new String(pfPasswordSignUp.getPassword()));}
         else if(res == JOptionPane.CANCEL_OPTION){
             JOptionPane.getRootFrame().dispose();
-            new Login(cc);
+
 
         }
     }
