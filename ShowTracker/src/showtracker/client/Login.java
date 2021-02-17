@@ -64,6 +64,8 @@ public class Login extends JPanel {
         pnlLog.add(pfPassword);
         pnlLog.add(btLogIn);
         pnlSign.add(btSignUp);
+
+        draw();
     }
 
     public void draw() {
