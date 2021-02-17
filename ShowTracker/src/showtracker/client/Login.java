@@ -18,8 +18,8 @@ import static showtracker.Helper.*;
 public class Login extends JPanel {
 
     private ClientController cc;
-    private JButton btLogIn = new JButton(" Log In ");
-    private JButton btSignUp = new JButton("New here? Sign up!");
+    private JButton btLogIn = new JButton("Log In!");
+    private JButton btSignUp = new JButton("Sign up!");
 
     private JTextField tfUsernameSignUp;
     private JPasswordField pfPasswordSignUp;
@@ -27,28 +27,43 @@ public class Login extends JPanel {
     private JTextField tfUsername = new JTextField();
     private JPasswordField pfPassword = new JPasswordField();
 
+    private JPanel pnlLog = new JPanel();
+    private JPanel pnlSign = new JPanel();
+
     public Login(ClientController cc) {
         this.cc = cc;
         setLayout(null);
-
-        ImageIcon ii = new ImageIcon("images/logo.png");
-        Image image = ii.getImage().getScaledInstance(150, 150, Image.SCALE_SMOOTH);
+        pnlLog.setLayout(null);
+        pnlSign.setLayout(null);
+        this.setBackground(Color.white);
+        ImageIcon ii = new ImageIcon("images/show.png");
+        Image image = ii.getImage().getScaledInstance(190, 150, Image.SCALE_SMOOTH);
         JLabel lbLogo = new JLabel(new ImageIcon(image));
+        add(pnlLog);
+        add(pnlSign);
+        pnlLog.setBounds(38,190,260,130);
+        pnlLog.setBorder(BorderFactory.createTitledBorder("Log in"));
+        pnlLog.setBackground(Color.white);
+
+        pnlSign.setBounds(38,328,260,60);
+        pnlSign.setBorder(BorderFactory.createTitledBorder("New here?"));
+        pnlSign.setBackground(Color.white);
 
         btLogIn.addActionListener(e -> checkUserLogin());
         btSignUp.addActionListener(e -> signUp());
 
-        lbLogo.setBounds(75, 25, 150, 150);
-        tfUsername.setBounds(60, 200, 200, 30);
-        pfPassword.setBounds(60, 240, 200, 30);
-        btLogIn.setBounds(100, 290, 120, 30);
-        btSignUp.setBounds(60, 340, 200, 30);
+        lbLogo.setBounds(80, 25, 180, 150);
+        tfUsername.setBounds(35, 30, 200, 23);
+        pfPassword.setBounds(35, 60, 200, 23);
+        btLogIn.setBounds(75, 90, 120, 23);
+        btSignUp.setBounds(75, 22, 120, 23);
+
 
         add(lbLogo);
-        add(tfUsername);
-        add(pfPassword);
-        add(btLogIn);
-        add(btSignUp);
+        pnlLog.add(tfUsername);
+        pnlLog.add(pfPassword);
+        pnlLog.add(btLogIn);
+        pnlSign.add(btSignUp);
     }
 
     public void draw() {
@@ -147,7 +162,7 @@ public class Login extends JPanel {
         Login log = new Login(new ClientController());
         log.draw();
         frame.setTitle("Login");
-        frame.setPreferredSize(new Dimension(400, 500));
+        frame.setPreferredSize(new Dimension(360, 500));
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
         frame.add(log);
