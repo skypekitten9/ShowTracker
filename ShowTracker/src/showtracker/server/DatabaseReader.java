@@ -1,6 +1,7 @@
 package showtracker.server;
 
 import com.mysql.cj.jdbc.MysqlDataSource;
+import com.mysql.cj.xdevapi.JsonArray;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
@@ -251,31 +252,42 @@ public class DatabaseReader {
             java.net.http.HttpResponse<String> response = java.net.http.HttpClient.newHttpClient().send(req, java.net.http.HttpResponse.BodyHandlers.ofString());
             System.out.println(response.statusCode());
             System.out.println(response.body());
+
             //if response is ok (200)
             if(response.statusCode() == 200){
                 //if response has error message
+                if(response.body().isEmpty()) return  null;
+                if(response.body().contains("Incorrect IMDb ID.")) return null;
                 if(response.body().contains("Too many results.")){
-                    return null;
+                    req = HttpRequest.newBuilder()
+                            .uri(URI.create("http://www.omdbapi.com/?t="+sbSearchTerms.toString()+"&type=series&apikey="+apiKey+"&format="+"json"))
+                            .header("Accept", "application/json")
+                            .method("GET", HttpRequest.BodyPublishers.noBody())
+                            .build();
+                    response = java.net.http.HttpClient.newHttpClient().send(req, java.net.http.HttpResponse.BodyHandlers.ofString());
                 }
                 if(response.body().contains("Series not found!")){
                     return null;
                 }
-                //otherwise it parses the show and returns the double array
-                else {
 
-                    JSONParser parser = new JSONParser();
-                    JSONObject obj = (JSONObject) parser.parse(response.body());
-                    JSONArray array = (JSONArray) obj.get("Search");
-                    String[][] shows = new String[array.size()][2];
-                    for (int i = 0; i < array.size(); i++) {
-                        JSONObject arrObj = (JSONObject) array.get(i);
-                        shows[i][0] = (String) arrObj.get("Title") + " ("+ arrObj.get("Year")+")";
-                        shows[i][1] = (String) arrObj.get("imdbID");
-                        System.out.println(shows[i][0]);
-                        System.out.println(shows[i][1]);
-                    }
-                    return shows;
+                //otherwise it parses the shows and returns the double array
+                JSONParser parser = new JSONParser();
+                JSONObject obj = (JSONObject) parser.parse(response.body());
+                JSONArray array = (JSONArray) obj.get("Search");
+                if(array == null)
+                {
+                    array = new JSONArray();
+                    array.add(obj);
                 }
+                String[][] shows = new String[array.size()][2];
+                for (int i = 0; i < array.size(); i++) {
+                    JSONObject arrObj = (JSONObject) array.get(i);
+                    shows[i][0] = (String) arrObj.get("Title") + " ("+ arrObj.get("Year")+")";
+                    shows[i][1] = (String) arrObj.get("imdbID");
+                    System.out.println(shows[i][0]);
+                    System.out.println(shows[i][1]);
+                }
+                return shows;
 
             }
             else {

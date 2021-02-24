@@ -70,7 +70,7 @@ public class Login extends JPanel {
 
     public void draw() {
         tfUsername.setText("Username");
-        pfPassword.setText("password");
+        pfPassword.setText("Password123");
         tfUsername.selectAll();
         pfPassword.selectAll();
     }

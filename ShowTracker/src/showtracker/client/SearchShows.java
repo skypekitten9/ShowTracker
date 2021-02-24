@@ -81,9 +81,9 @@ public class SearchShows extends JPanel {
             jpSearchResult.setLayout(new BorderLayout());
 
             System.out.println("SHOW EJ HITTAT");
-            searchRequest = "<html>" + "Your Search '" + searchRequest + "' was not found <br>" + "tips:<br>"
-                    + "- Make sure all word are spelled correctly<br>" + "- Try different keywords<br>"
-                    + "- or click the button below to create your own tracker =)" + "</html>";
+            searchRequest = "<html>" + "Your Search '" + searchRequest + "' was not found <br>" + "Have you tried the following:<br>"
+                    + "- Make sure your search is spelled correctly<br>" + "- Try different keywords<br>"
+                    + "- Or click the button below to create your own tracker" + "</html>";
 
             JLabel lbl = new JLabel("<html><font size = '3', padding-left: 50px>" + searchRequest + "</font></html>");
             // lbl.setHorizontalAlignment(JLabel.CENTER);
