@@ -37,6 +37,7 @@ public class DatabaseReader {
     private final int show = 1;
     private String token = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1NTY2MjUyOTksImlkIjoiU2hvd1RyYWNrZXIiLCJvcmlnX2lhdCI6MTU1NjUzODg5OSwidXNlcmlkIjo1MjQzMDIsInVzZXJuYW1lIjoiZmlsaXAuc3BhbmJlcmdxcnMifQ.NriC7481n32bFACSLLZwSAgf9Ll835_xHwxvuAHgTmqdYRs3RT0TJhetgCwRsCSNlRMmWYoROXOrYGCGLIz8izkMIS2_OwaygqiX4XBbYMwxjdcBtuhdhy-a34WureLEdGvqAUwx6tFNYWXH27x2evNGgbOMYFyN03idqQhyqHJBcXsRtAKD9NhmrL5R33y0O8jmXyu5QT-B0FWyGJ1dQ-15PK49feRauofZ1s72uaE_xTvwlyHSZbRTX5DiOtH8FZgNGMkqvARkR0B5MoqEat24-xUyjDb5VKNkhpr9oZsJwl_nZKMm8jZrKgPHHuZ6E4CUyip38EgbqPMipXqhMg";
     private String language = "en";
+    private String apiKey = "be9629f";
 
     public void setupDBConnection() {
         MysqlDataSource dataSource = new MysqlDataSource();
@@ -240,7 +241,6 @@ public class DatabaseReader {
             sbSearchTerms.append("%20").append(arSearchTerms[i]);
 
         //Building request for api
-        String apiKey = "be9629f";
         HttpRequest req = HttpRequest.newBuilder()
                 .uri(URI.create("http://www.omdbapi.com/?s="+sbSearchTerms.toString()+"&type=series&apikey="+apiKey+"&format="+"json"))
                 .header("Accept", "application/json")
@@ -327,7 +327,6 @@ public class DatabaseReader {
     }
 
     public JSONObject searchTheTVDBShow(String id) {
-        String apiKey = "be9629f";
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create("http://www.omdbapi.com/?i="+id+"&apikey="+apiKey+"&format="+"json"))
                 .header("Accept", "application/json")
@@ -351,8 +350,25 @@ public class DatabaseReader {
         return joResponse;
     }
 
-    public JSONArray getEpisodesOfShow(String id, int page) {
-        HttpGet request = createGet("https://api.thetvdb.com/series/" + id + "/episodes?page=" + page);
+    public JSONArray getEpisodesOfShow(String id, int season) {
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create("http://www.omdbapi.com/?i="+id+"&apikey="+apiKey+"&format="+"json"+"&season="+season))
+                .header("Accept", "application/json")
+                .method("GET", HttpRequest.BodyPublishers.noBody())
+                .build();
+        //HttpGet request = createGet("http://www.omdbapi.com/?i="+id+"&apikey="+apiKey+"&format="+"json"+"&season="+season);
+        try {
+            java.net.http.HttpResponse response = java.net.http.HttpClient.newHttpClient().send(request, java.net.http.HttpResponse.BodyHandlers.ofString());
+            JSONParser parser = new JSONParser();
+            JSONObject object = (JSONObject) parser.parse(response.body().toString());
+            return (JSONArray) object.get("Episodes");
+
+        } catch (IOException | InterruptedException | ParseException e) {
+            e.printStackTrace();
+            return null;
+        }
+
+        /*
         JSONObject joResponse = getJSONFromRequest(request);
         String error = (String) joResponse.get("Error");
         if (error == null) {
@@ -362,6 +378,8 @@ public class DatabaseReader {
             System.out.println(error);
             return null;
         }
+
+         */
     }
 
     public Show generateShow(String[] arShow) {
@@ -370,33 +388,34 @@ public class DatabaseReader {
         Show show = new Show((String) joShow.get("Title"));
         show.setDescription((String) joShow.get("Plot"));
         //show.setTvdbId(Long.toString((Long) joShow.get("id")));
-        show.setImdbId((String) joShow.get("imdbId"));
+        show.setImdbId((String) joShow.get("imdbID"));
 
-        int page = 1;
+        int totalSeasons = Integer.parseInt((String) joShow.get("totalSeasons"));
+        int season = 1;
 
-        JSONArray jaEpisodes = getEpisodesOfShow(arShow[1], page);
+        JSONArray jaEpisodes = getEpisodesOfShow(arShow[1], season);
 
         do {
             System.out.println(jaEpisodes);
             for (Object o : jaEpisodes) {
                 JSONObject jo = (JSONObject) o;
 
-                int inSeason = ((Long) jo.get("airedSeason")).intValue();
-                int inEpisode = ((Long) jo.get("airedEpisodeNumber")).intValue();
-                String name = (String) jo.get("episodeName");
-                String tvdbId = Long.toString((Long) jo.get("id"));
-                String imdbId = (String) jo.get("imdbId");
-                String description = Helper.decodeUnicode((String) jo.get("overview"));
+                int inSeason = season;//((Long) jo.get("airedSeason")).intValue();
+                int inEpisode = Integer.parseInt((String) jo.get("Episode"));
+                String name = (String) jo.get("Title");
+                //String tvdbId = Long.toString((Long) jo.get("id"));
+                String imdbId = (String) jo.get("imdbID");
+                String description = "PLACEHOLDER XD";//Helper.decodeUnicode((String) jo.get("hehe xd"));
 
                 Episode episode = new Episode(show, inEpisode, inSeason);
-                episode.setTvdbId(tvdbId);
+                //episode.setTvdbId(tvdbId);
                 episode.setImdbId(imdbId);
                 episode.setName(name);
                 episode.setDescription(description);
                 show.addEpisode(episode);
             }
-            page++;
-            jaEpisodes = getEpisodesOfShow(arShow[1], page);
+            season++;
+            jaEpisodes = getEpisodesOfShow(arShow[1], season);
         } while (jaEpisodes != null);
 
         show.sortEpisodes();
