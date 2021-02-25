@@ -450,7 +450,7 @@ public class DatabaseReader {
     }
 
     public Show updateShow(Show show) {
-        String[] searchRequest = {show.getName(), show.getTvdbId()};
+        String[] searchRequest = {show.getName(), show.getImdbId()};
         Show latest = generateShow(searchRequest);
         for (Episode e : latest.getEpisodes())
             if (!show.containsById(e))
