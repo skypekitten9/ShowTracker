@@ -73,11 +73,19 @@ public class User implements Serializable {
         System.err.println("Show not in user library!");
     }
 
-    public ArrayList<Show> getShows() {
-        return shows;
+    public boolean containsShow(String id_IMDB)
+    {
+        for (int i = 0; i < shows.size(); i++) {
+
+            if(shows.get(i).getImdbId().equals(id_IMDB))
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
-    public boolean containsShow(Show show) {
-        return shows.contains(show);
+    public ArrayList<Show> getShows() {
+        return shows;
     }
 }

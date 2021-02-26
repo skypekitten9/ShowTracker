@@ -123,13 +123,21 @@ public class SearchShows extends JPanel {
 
             mainPanel.setLayout(new BorderLayout());
 
-            JButton btnAdd = new JButton("Add");
+            boolean addStart = true;
+            String buttonTag = "Add";
+            if (cc.getUser().containsShow(s[1]))
+            {
+                buttonTag = "Remove";
+                addStart = false;
+            }
+            JButton btnAdd = new JButton(buttonTag);
 
             btnAdd.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(Color.WHITE),
                     BorderFactory.createEmptyBorder(5, 5, 5, 5)));
 
+            boolean finalAddStart = addStart;
             btnAdd.addActionListener(new ActionListener() {
-                boolean add = true;
+                boolean add = finalAddStart;
                 private String id = s[1];
 
                 @Override
@@ -208,6 +216,12 @@ public class SearchShows extends JPanel {
             cc.getUser().removeShow(id);
         }
 
+    }
+
+    public void reset()
+    {
+        jpSearchResult.removeAll();
+        tfSearchBar.setText("Enter name of the show here");
     }
 
     public static void main(String[] args) {

@@ -141,6 +141,7 @@ public class ClientController {
         setButtonsEnabled(true);
         setPanel("Home", null);
         System.out.println("Welcome back!");
+        pnlSearchShows.reset();
     }
 
     public String updatePassword(String username, String oldPassword, String newPassword) {
@@ -162,6 +163,7 @@ public class ClientController {
     }
 
     public void generateShow(String showname, String showID) {
+        if (user.containsShow(showID)) return;
         String[] generateShowRequest = {showname, showID};
         Show show = (Show) connection.packEnvelope(generateShowRequest, "getShow");
         user.addShow(show);
