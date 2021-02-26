@@ -123,7 +123,7 @@ public class SearchShows extends JPanel {
 
             mainPanel.setLayout(new BorderLayout());
 
-            JButton btnAdd = new JButton("add");
+            JButton btnAdd = new JButton("Add");
 
             btnAdd.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(Color.WHITE),
                     BorderFactory.createEmptyBorder(5, 5, 5, 5)));
@@ -141,8 +141,11 @@ public class SearchShows extends JPanel {
                         add = false;
                         cc.generateShow(showname, showID);
                     } else
+                    {
+                        //remove
                         add = true;
-                    addRemove(s[0], btnAdd, add);
+                    }
+                    addRemove(s[1], btnAdd, add);
                 }
             });
             mainPanel.add(btnAdd, BorderLayout.WEST);
@@ -195,16 +198,14 @@ public class SearchShows extends JPanel {
 
     }
 
-    protected void addRemove(String showname, JButton btnAdd, boolean add) {
+    protected void addRemove(String id, JButton btnAdd, boolean add) {
         // TODO Auto-generated method stub
         if (add == false) {
-            btnAdd.setText("REMOVE");
-            System.out.println(showname + " is added to list");
+            btnAdd.setText("Remove");
             // cc.addShow(showname);
         } else {
-            btnAdd.setText("add");
-            System.out.println(showname + " is removed from list");
-            cc.getUser().removeShow(new Show(showname));
+            btnAdd.setText("Add");
+            cc.getUser().removeShow(id);
         }
 
     }
