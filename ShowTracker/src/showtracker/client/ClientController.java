@@ -100,7 +100,7 @@ public class ClientController {
                 pnlLogin.revalidate();
                 if (user != null)
                     new Thread(() -> updateUser(user)).run();
-            } else if (confirmDialog == 1) {
+            } else {//if (confirmDialog == 1) {
                 return;
             }//The end of the new code
 
