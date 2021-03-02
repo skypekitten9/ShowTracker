@@ -390,12 +390,12 @@ public class DatabaseReader {
         //show.setTvdbId(Long.toString((Long) joShow.get("id")));
         show.setImdbId((String) joShow.get("imdbID"));
 
-        int totalSeasons = Integer.parseInt((String) joShow.get("totalSeasons"));
+        //int totalSeasons = Integer.parseInt((String) joShow.get("totalSeasons"));
         int season = 1;
 
         JSONArray jaEpisodes = getEpisodesOfShow(arShow[1], season);
 
-        do {
+        while (jaEpisodes != null){
             System.out.println(jaEpisodes);
             for (Object o : jaEpisodes) {
                 JSONObject jo = (JSONObject) o;
@@ -416,8 +416,7 @@ public class DatabaseReader {
             }
             season++;
             jaEpisodes = getEpisodesOfShow(arShow[1], season);
-        } while (jaEpisodes != null);
-
+        }
         show.sortEpisodes();
         System.out.println("DatabaseReader: Show created.");
         for (Episode e: show.getEpisodes())

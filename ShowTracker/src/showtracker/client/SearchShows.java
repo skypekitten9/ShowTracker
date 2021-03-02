@@ -144,16 +144,19 @@ public class SearchShows extends JPanel {
                 public void actionPerformed(ActionEvent e) {
                     String showname = s[0];
                     String showID = s[1];
+                    boolean success = false;
 
                     if (add) {
                         add = false;
-                        cc.generateShow(showname, showID);
+                        success = cc.generateShow(showname, showID);
                     } else
                     {
                         //remove
                         add = true;
+                        success = true;
                     }
-                    addRemove(s[1], btnAdd, add);
+                    if(success) addRemove(s[1], btnAdd, add);
+                    else add = true;
                 }
             });
             mainPanel.add(btnAdd, BorderLayout.WEST);

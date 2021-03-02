@@ -166,11 +166,16 @@ public class ClientController {
         return (String[][]) connection.packEnvelope(searchTerms, "searchShows");
     }
 
-    public void generateShow(String showname, String showID) {
-        if (user.containsShow(showID)) return;
+    public boolean generateShow(String showname, String showID) {
+        if (user.containsShow(showID)) return false;
         String[] generateShowRequest = {showname, showID};
         Show show = (Show) connection.packEnvelope(generateShowRequest, "getShow");
+        if(show.getSeasons().isEmpty()){
+            JOptionPane.showMessageDialog(null, "This show has no episodes and was therefore not added.");
+            return false;
+        }
         user.addShow(show);
+        return true;
     }
 
     public User getUser() {
