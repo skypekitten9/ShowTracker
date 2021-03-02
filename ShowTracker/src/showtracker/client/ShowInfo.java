@@ -84,12 +84,15 @@ public class ShowInfo extends JPanel {
                 for (Episode ep : show.getEpisodes())
                     if (ep.getSeasonNumber() == sl.getSeason()) {
                         JLabel lbl = new JLabel("Episode " + Helper.df.format(ep.getEpisodeNumber()) + " - " + ep.getName());
+                        /*
                         lbl.addMouseListener(new MouseAdapter() {
                             @Override
                             public void mouseClicked(MouseEvent e) {
                                 JOptionPane.showMessageDialog(null, "<html><body><p style=\"width: 200px;\">" + show.getEpisode(ep.getSeasonNumber(), ep.getEpisodeNumber()).getDescription() + "</p></body></html>", ep.getName(), JOptionPane.INFORMATION_MESSAGE);
                             }
                         });
+
+                         */
                         panel.add(lbl);
                         JCheckBox checkBox = new JCheckBox();
                         checkBox.setSelected(ep.isWatched());

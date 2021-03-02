@@ -290,9 +290,15 @@ public class SearchShows extends JPanel {
         }
         if (parseIntSuccess) {
             Show show = new Show(tfShowName.getText());
+            show.setImdbId("_"+show.getName());
+            show.setDescription("This show has been added manually and therefore has no description.");
             for (int s = 0; s < tfSeasons.length; s++)
-                for (int e = 0; e < episodes[s]; e++)
-                    show.addEpisode(new Episode(show, e + 1, s + 1));
+                for (int e = 0; e < episodes[s]; e++){
+                    Episode episode = new Episode(show, e + 1, s + 1);
+                    episode.setName("");
+                    episode.setDescription("This episode has been added manually and therefore has no description.");
+                    show.addEpisode(episode);
+                }
 
             show.sortEpisodes();
             cc.getUser().addShow(show);

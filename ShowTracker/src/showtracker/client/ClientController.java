@@ -151,6 +151,10 @@ public class ClientController {
 
 
     public Show updateShow(Show show) {
+        if(show.getImdbId().charAt(0) == '_'){
+            JOptionPane.showMessageDialog(null, "This show has been added manually and therefore can't be updated.");
+            return null;
+        }
         return (Show) connection.packEnvelope(show, "updateShow");
     }
 

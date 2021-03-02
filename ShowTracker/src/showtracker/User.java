@@ -52,6 +52,9 @@ public class User implements Serializable {
     }
 
     public void updateShow(Show show) {
+        if(show == null){
+            return;
+        }
         for (Show s : shows) {
             if (show.equals(s))
                 for (Episode e : show.getEpisodes())
@@ -62,8 +65,13 @@ public class User implements Serializable {
     }
 
     public void removeShow(String id_IMDB) {
-        for (int i = 0; i < shows.size(); i++) {
+        for (int i = shows.size()-1; i >= 0; i--) {
+            if(shows.get(i).getImdbId() == null){
+                shows.remove(i);
+            }
+        }
 
+        for (int i = 0; i < shows.size(); i++) {
             if(shows.get(i).getImdbId().equals(id_IMDB))
             {
                 shows.remove(i);
