@@ -87,7 +87,7 @@ public class ShowList extends JPanel {
                     private Show show = s;
 
                     public void actionPerformed(ActionEvent e) {
-                        cc.getUser().removeShow(show);
+                        cc.getUser().removeShow(show.getImdbId());
                         drawShowList(cc.getUser().getShows());
                     }
                 });

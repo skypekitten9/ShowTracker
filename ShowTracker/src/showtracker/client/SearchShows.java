@@ -81,9 +81,9 @@ public class SearchShows extends JPanel {
             jpSearchResult.setLayout(new BorderLayout());
 
             System.out.println("SHOW EJ HITTAT");
-            searchRequest = "<html>" + "Your Search '" + searchRequest + "' was not found <br>" + "tips:<br>"
-                    + "- Make sure all word are spelled correctly<br>" + "- Try different keywords<br>"
-                    + "- or click the button below to create your own tracker =)" + "</html>";
+            searchRequest = "<html>" + "Your Search '" + searchRequest + "' was not found <br>" + "Have you tried the following:<br>"
+                    + "- Make sure your search is spelled correctly<br>" + "- Try different keywords<br>"
+                    + "- Or click the button below to create your own tracker" + "</html>";
 
             JLabel lbl = new JLabel("<html><font size = '3', padding-left: 50px>" + searchRequest + "</font></html>");
             // lbl.setHorizontalAlignment(JLabel.CENTER);
@@ -123,13 +123,21 @@ public class SearchShows extends JPanel {
 
             mainPanel.setLayout(new BorderLayout());
 
-            JButton btnAdd = new JButton("add");
+            boolean addStart = true;
+            String buttonTag = "Add";
+            if (cc.getUser().containsShow(s[1]))
+            {
+                buttonTag = "Remove";
+                addStart = false;
+            }
+            JButton btnAdd = new JButton(buttonTag);
 
             btnAdd.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(Color.WHITE),
                     BorderFactory.createEmptyBorder(5, 5, 5, 5)));
 
+            boolean finalAddStart = addStart;
             btnAdd.addActionListener(new ActionListener() {
-                boolean add = true;
+                boolean add = finalAddStart;
                 private String id = s[1];
 
                 @Override
@@ -141,8 +149,11 @@ public class SearchShows extends JPanel {
                         add = false;
                         cc.generateShow(showname, showID);
                     } else
+                    {
+                        //remove
                         add = true;
-                    addRemove(s[0], btnAdd, add);
+                    }
+                    addRemove(s[1], btnAdd, add);
                 }
             });
             mainPanel.add(btnAdd, BorderLayout.WEST);
@@ -195,18 +206,22 @@ public class SearchShows extends JPanel {
 
     }
 
-    protected void addRemove(String showname, JButton btnAdd, boolean add) {
+    protected void addRemove(String id, JButton btnAdd, boolean add) {
         // TODO Auto-generated method stub
         if (add == false) {
-            btnAdd.setText("REMOVE");
-            System.out.println(showname + " is added to list");
+            btnAdd.setText("Remove");
             // cc.addShow(showname);
         } else {
-            btnAdd.setText("add");
-            System.out.println(showname + " is removed from list");
-            cc.getUser().removeShow(new Show(showname));
+            btnAdd.setText("Add");
+            cc.getUser().removeShow(id);
         }
 
+    }
+
+    public void reset()
+    {
+        jpSearchResult.removeAll();
+        tfSearchBar.setText("Enter name of the show here");
     }
 
     public static void main(String[] args) {

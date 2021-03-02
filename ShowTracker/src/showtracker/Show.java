@@ -121,7 +121,7 @@ public class Show implements Serializable {
 
         @Override
         public int compare(Episode e1, Episode e2) {
-            return (Integer.parseInt(e1.getTvdbId()) - Integer.parseInt(e2.getTvdbId()));
+            return (e1.getImdbId().compareTo(e2.getImdbId()));
         }
     }
 }

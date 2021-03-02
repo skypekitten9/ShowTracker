@@ -61,17 +61,31 @@ public class User implements Serializable {
         }
     }
 
-    public void removeShow(Show show) { // if satsen kanske inte behövs
-        if (shows.contains(show)) {
-            shows.remove(show);
+    public void removeShow(String id_IMDB) {
+        for (int i = 0; i < shows.size(); i++) {
+
+            if(shows.get(i).getImdbId().equals(id_IMDB))
+            {
+                shows.remove(i);
+                return;
+            }
         }
+        System.err.println("Show not in user library!");
+    }
+
+    public boolean containsShow(String id_IMDB)
+    {
+        for (int i = 0; i < shows.size(); i++) {
+
+            if(shows.get(i).getImdbId().equals(id_IMDB))
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     public ArrayList<Show> getShows() {
         return shows;
-    }
-
-    public boolean containsShow(Show show) {
-        return shows.contains(show);
     }
 }
