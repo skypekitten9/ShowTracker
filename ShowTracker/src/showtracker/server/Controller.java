@@ -82,7 +82,7 @@ public class Controller {
         }
     }
 
-    private Envelope signUp(String[] userInfo) {
+    public Envelope signUp(String[] userInfo) {
         String stUserName = users.get(userInfo[0]);
         if (stUserName == null) {
             User user = new User(userInfo[0], null);
