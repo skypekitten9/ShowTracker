@@ -4,8 +4,13 @@ package showtracker.client;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 import showtracker.Episode;
@@ -47,6 +52,7 @@ public class SearchShows extends JPanel {
 
         add(jpSearchBar, BorderLayout.NORTH);
         add(jspSearchResult, BorderLayout.CENTER);
+        jspSearchResult.getVerticalScrollBar().setUnitIncrement(16);
 
     }
 
@@ -110,11 +116,25 @@ public class SearchShows extends JPanel {
 
         for (String[] s : searchResults) {
             JPanel mainPanel = new JPanel();
+            ImageIcon imageIcon = null;
+            if(s[2] != null && !s[2].equalsIgnoreCase("N/A")){
+                try {
+                    URL url = new URL(s[2]);
+                    Image i = ImageIO.read(url);
+                    imageIcon = new ImageIcon(i);
+                } catch (IOException e) {
+                    imageIcon = null;
+                    e.printStackTrace();
+                }
+            }
+            if(imageIcon == null){
+                mainPanel.setPreferredSize(new Dimension(300, 30));
+            }
+            else mainPanel.setPreferredSize(new Dimension(300, 50));
 
-            mainPanel.setPreferredSize(new Dimension(300, 30));
 
             mainPanel.setLayout(new BorderLayout());
-
+            System.out.println(s[2]);
             boolean addStart = true;
             String buttonTag = "Add";
             if (cc.getUser().containsShow(s[1]))
@@ -123,6 +143,20 @@ public class SearchShows extends JPanel {
                 addStart = false;
             }
             JButton btnAdd = new JButton(buttonTag);
+
+            if(imageIcon != null){
+                JLabel imageLabel = new JLabel(new ImageIcon(imageIcon.getImage().getScaledInstance(50,50, Image.SCALE_SMOOTH)), JLabel.CENTER);
+                ImageIcon finalImageIcon = imageIcon;
+                imageLabel.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mouseClicked(MouseEvent e) {
+                        JOptionPane.showMessageDialog(null, finalImageIcon);
+                    }
+
+                });
+                mainPanel.add(imageLabel,BorderLayout.EAST);
+            }
+
 
             btnAdd.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(Color.WHITE),
                     BorderFactory.createEmptyBorder(5, 5, 5, 5)));
@@ -136,11 +170,12 @@ public class SearchShows extends JPanel {
                 public void actionPerformed(ActionEvent e) {
                     String showname = s[0];
                     String showID = s[1];
+                    String showimage = s[2];
                     boolean success = false;
 
                     if (add) {
                         add = false;
-                        success = cc.generateShow(showname, showID);
+                        success = cc.generateShow(showname, showID, showimage);
                     } else
                     {
                         add = true;

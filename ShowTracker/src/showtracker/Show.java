@@ -11,6 +11,7 @@ public class Show implements Serializable {
     private String description;
     private LinkedList<Episode> episodes = new LinkedList<>();
     private Date lastWatched;
+    private String image;
 
     public Show(String name) {
         this.name = name;
@@ -67,6 +68,14 @@ public class Show implements Serializable {
 
     public Date getLastWatched() {
         return lastWatched;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public LinkedList<Double> getSeasons() {

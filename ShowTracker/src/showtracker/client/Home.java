@@ -4,10 +4,15 @@ import showtracker.Episode;
 import showtracker.Helper;
 import showtracker.Show;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.io.IOException;
+import java.net.URL;
 import java.text.DecimalFormat;
 import java.util.Collections;
 
@@ -52,6 +57,28 @@ public class Home extends JPanel {
                         df.format(currentEpisode.getEpisodeNumber()),
                         currentEpisode.getName() != null && !currentEpisode.getName().equals("") ? ":<br>" + currentEpisode.getName() : ""));
                 panel.add(label, BorderLayout.CENTER);
+                if(sh.getImage() != null && !sh.getImage().equalsIgnoreCase("N/A")){
+                    ImageIcon imageIcon = null;
+                    try {
+                        URL url = new URL(sh.getImage());
+                        Image i = ImageIO.read(url);
+                        imageIcon = new ImageIcon(i);
+                    } catch (IOException e) {
+                        imageIcon = null;
+                        e.printStackTrace();
+                    }
+                    if(imageIcon != null){
+                        JLabel imageLabel = new JLabel(new ImageIcon(imageIcon.getImage().getScaledInstance(35,40,Image.SCALE_SMOOTH)), JLabel.CENTER);
+                        panel.add(imageLabel, BorderLayout.EAST);
+                        ImageIcon finalImageIcon = imageIcon;
+                        imageLabel.addMouseListener(new MouseAdapter() {
+                            @Override
+                            public void mouseClicked(MouseEvent e) {
+                                JOptionPane.showMessageDialog(null, finalImageIcon);
+                            }
+                        });
+                    }
+                }
                 JLabel lbWidth = new JLabel();
                 lbWidth.setPreferredSize(new Dimension(300, 1));
                 panel.add(lbWidth, BorderLayout.SOUTH);
@@ -61,6 +88,7 @@ public class Home extends JPanel {
         scrollPane.setViewportView(box);
         scrollPane.revalidate();
         scrollPane.repaint();
+        scrollPane.getVerticalScrollBar().setUnitIncrement(16);
     }
 
     public JPanel logoPanel() {

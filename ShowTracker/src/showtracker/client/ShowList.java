@@ -41,6 +41,7 @@ public class ShowList extends JPanel {
         add(myDocumentListener, BorderLayout.NORTH);
 
         add(scrollPanel, BorderLayout.CENTER);
+        scrollPanel.getVerticalScrollBar().setUnitIncrement(16);
 
     }
 

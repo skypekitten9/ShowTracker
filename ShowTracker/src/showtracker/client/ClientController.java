@@ -158,7 +158,7 @@ public class ClientController {
         return (String[][]) connection.packEnvelope(searchTerms, "searchShows");
     }
 
-    public boolean generateShow(String showname, String showID) {
+    public boolean generateShow(String showname, String showID, String showimage) {
         if (user.containsShow(showID)) return false;
         String[] generateShowRequest = {showname, showID};
         Show show = (Show) connection.packEnvelope(generateShowRequest, "getShow");
@@ -166,6 +166,8 @@ public class ClientController {
             JOptionPane.showMessageDialog(null, "This show has no episodes and was therefore not added.");
             return false;
         }
+        System.out.println(showimage);
+        show.setImage(showimage);
         user.addShow(show);
         return true;
     }

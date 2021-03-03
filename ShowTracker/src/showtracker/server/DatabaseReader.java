@@ -19,9 +19,14 @@ import showtracker.Episode;
 import showtracker.Helper;
 import showtracker.Show;
 
+import javax.imageio.ImageIO;
+import javax.swing.*;
+import java.awt.*;
 import java.io.*;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URI;
+import java.net.URL;
 import java.net.http.HttpRequest;
 import java.sql.*;
 
@@ -279,13 +284,15 @@ public class DatabaseReader {
                     array = new JSONArray();
                     array.add(obj);
                 }
-                String[][] shows = new String[array.size()][2];
+                String[][] shows = new String[array.size()][3];
                 for (int i = 0; i < array.size(); i++) {
                     JSONObject arrObj = (JSONObject) array.get(i);
                     shows[i][0] = (String) arrObj.get("Title") + " ("+ arrObj.get("Year")+")";
                     shows[i][1] = (String) arrObj.get("imdbID");
+                    shows[i][2] = (String) arrObj.get("Poster");
                     System.out.println(shows[i][0]);
                     System.out.println(shows[i][1]);
+                    System.out.println(shows[i][2]);
                 }
                 return shows;
 
@@ -387,6 +394,7 @@ public class DatabaseReader {
         JSONObject joShow = searchTheTVDBShow(arShow[1]);
         Show show = new Show((String) joShow.get("Title"));
         show.setDescription((String) joShow.get("Plot"));
+        show.setImage((String) joShow.get("Poster"));
         //show.setTvdbId(Long.toString((Long) joShow.get("id")));
         show.setImdbId((String) joShow.get("imdbID"));
 
