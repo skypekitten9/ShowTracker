@@ -9,3 +9,5 @@ ShowTracker.iml
 .project
 **/.DS_Store*
 /src/showtracker/server/Test.java
+.jar
+.bat
