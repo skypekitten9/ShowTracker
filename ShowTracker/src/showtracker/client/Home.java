@@ -23,6 +23,7 @@ public class Home extends JPanel {
 
     public Home(ClientController cc) {
         this.cc = cc;
+        add(scrollPane);
         scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         scrollPane.setPreferredSize(new Dimension(335, 400));
     }
