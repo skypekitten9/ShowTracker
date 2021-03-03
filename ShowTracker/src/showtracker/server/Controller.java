@@ -66,9 +66,19 @@ public class Controller {
                 String[] password = (String[]) input.getContent();
                 returnEnvelope = updatePass(password);
                 break;
+            case "isUsernameAvailable":
+                String userName = (String) input.getContent();
+                returnEnvelope = isUsernameAvailable(userName);
+                break;
 
         }
         return returnEnvelope;
+    }
+
+    private Envelope isUsernameAvailable(String userName)
+    {
+        File userFile = new File("files/users/" + userName + ".usr" );
+        return new Envelope(!userFile.exists(), "reply");
     }
 
     private Envelope updatePass(String[] userInfo) {

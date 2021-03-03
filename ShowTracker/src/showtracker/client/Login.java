@@ -82,8 +82,7 @@ public class Login extends JPanel {
                 JOptionPane.PLAIN_MESSAGE);
 
         while (!(checkPasswordValidity(new String(pfPasswordSignUp.getPassword()))
-                && checkUsernameValidity(tfUsernameSignUp.getText())
-                )&& res == JOptionPane.OK_OPTION) {
+                && checkUsernameValidity(tfUsernameSignUp.getText()) && cc.isUsernameAvailable(tfUsernameSignUp.getText()))&& res == JOptionPane.OK_OPTION ) {
 
             if (!checkUsernameValidity(tfUsernameSignUp.getText()) &&  res == JOptionPane.OK_OPTION)
                 JOptionPane.showMessageDialog(null, "Username not valid!", "No Username", JOptionPane.WARNING_MESSAGE);
@@ -91,6 +90,9 @@ public class Login extends JPanel {
             if (!checkPasswordValidity(new String(pfPasswordSignUp.getPassword()))&& res == JOptionPane.OK_OPTION)
                 JOptionPane.showMessageDialog(null, "Your password must contain at least 8 charachters, "
                         + "\none capital letter, one small letter and one digit!", "No Password!", JOptionPane.WARNING_MESSAGE);
+
+            if(!cc.isUsernameAvailable(tfUsernameSignUp.getText()))
+                JOptionPane.showMessageDialog(null, "Someone is already using this username!", "Username taken!", JOptionPane.WARNING_MESSAGE);
 
             res = JOptionPane.showConfirmDialog(null, createAccount(), "Sign Up!", JOptionPane.OK_CANCEL_OPTION,
                     JOptionPane.PLAIN_MESSAGE);

@@ -116,6 +116,11 @@ public class ClientController {
         return (User) connection.packEnvelope(userInfo, "logIn");
     }
 
+    public boolean isUsernameAvailable(String username)
+    {
+        return (boolean) connection.packEnvelope(username, "isUsernameAvailable");
+    }
+
     public void signUp(String username, String password) {
         String[] userInfo = {username, password};
         connection.packEnvelope(userInfo, "signUp");
