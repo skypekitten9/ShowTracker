@@ -124,6 +124,7 @@ public class ClientController {
     public void signUp(String username, String password) {
         String[] userInfo = {username, password};
         connection.packEnvelope(userInfo, "signUp");
+        JOptionPane.showMessageDialog(null, "You have successfully signed up!");
         finalizeUser(new User(username, null));
     }
 
