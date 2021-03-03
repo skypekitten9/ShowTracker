@@ -22,15 +22,7 @@ public class Home extends JPanel {
     private JViewport jvp;
 
     public Home(ClientController cc) {
-        //setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        //setLayout(new FlowLayout(FlowLayout.LEFT));
-        //setLayout(new BorderLayout());
         this.cc = cc;
-        //jvp = scrollPane.getViewport();
-        //jvp.setLayout(new BoxLayout(jvp, BoxLayout.Y_AXIS));
-        //jvp.setLayout(new FlowLayout(FlowLayout.LEFT));
-        //jvp.setLayout(new GridLayout(2, 1));
-        add(scrollPane); //, BorderLayout.CENTER);
         scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         scrollPane.setPreferredSize(new Dimension(335, 400));
     }
@@ -40,7 +32,6 @@ public class Home extends JPanel {
      */
     void draw() {
         scrollPane.getViewport().removeAll();
-        //jvp.removeAll();
         Box box = Box.createVerticalBox();
         for (Show s : cc.getUser().getShows())
             System.out.println(s.getLastWatched());
@@ -63,22 +54,16 @@ public class Home extends JPanel {
                 JLabel lbWidth = new JLabel();
                 lbWidth.setPreferredSize(new Dimension(300, 1));
                 panel.add(lbWidth, BorderLayout.SOUTH);
-                //panel.setMaximumSize(new Dimension(300, 100));
-                //panel.setPreferredSize(new Dimension(320, 50));
                 box.add(panel);
-
-                //jvp.add(panel);
             }
         }
         scrollPane.setViewportView(box);
-        //scrollPane.add(box);
         scrollPane.revalidate();
         scrollPane.repaint();
     }
 
     public JPanel logoPanel() {
         JPanel logoPanel = new JPanel();
-//    	ImageIcon img = new ImageIcon("images/logo.jpg");
 
         ImageIcon logoImage = new ImageIcon("images/logo.jpg");
         Image logoImg = logoImage.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);

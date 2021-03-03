@@ -147,8 +147,7 @@ public class Login extends JPanel {
         User user = cc.logIn(username, password);
         if (user != null) {
             cc.finalizeUser(user);
-        } else { // ny ide på UI, kan förbättras ^_^
-//			Helper.message("Login failed!");
+        } else {
             Helper.errorMessage("Login failed!");
             Border compound = null;
             Border redline = BorderFactory.createLineBorder(Color.red);

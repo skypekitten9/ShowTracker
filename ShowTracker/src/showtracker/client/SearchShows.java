@@ -71,7 +71,6 @@ public class SearchShows extends JPanel {
 
         jpSearchResult.removeAll();
         String[][] searchResults = cc.searchShows(searchRequest);
-        Show showRequest = new Show(searchRequest);
         if (searchResults != null) {
             jpSearchResult.setLayout(new GridLayout(searchResults.length, 2));
             System.out.println("SHOW HITTAT");
@@ -85,7 +84,6 @@ public class SearchShows extends JPanel {
                     + "- Or click the button below to create your own tracker" + "</html>";
 
             JLabel lbl = new JLabel("<html><font size = '3', padding-left: 50px>" + searchRequest + "</font></html>");
-            // lbl.setHorizontalAlignment(JLabel.CENTER);
             lbl.setPreferredSize(new Dimension(jpSearchResult.getWidth() - 5, jpSearchResult.getHeight() / 2));
 
             ImageIcon addImage = new ImageIcon("images/notes-add.png");
@@ -93,9 +91,6 @@ public class SearchShows extends JPanel {
             ImageIcon addImageIcon = new ImageIcon(addImg);
 
             btnCreateOwnShow = new JButton(addImageIcon);
-
-//			btnCreateOwnShow.setIcon(new ImageIcon(new ImageIcon("images/notes-add.png").getImage().getScaledInstance(
-//					(jpSearchResult.getWidth()/2-50), (jpSearchResult.getHeight()/2-50), Image.SCALE_SMOOTH)));
 
             btnCreateOwnShow.addActionListener(e -> drawNoSearchResultPanel());
             jpSearchResult.add(lbl, BorderLayout.CENTER);
@@ -113,12 +108,10 @@ public class SearchShows extends JPanel {
         jpSearchResult.setLayout(new GridBagLayout());
         gbc.fill = GridBagConstraints.HORIZONTAL;
 
-        // TODO se till att det max händer en gång.
         for (String[] s : searchResults) {
             JPanel mainPanel = new JPanel();
 
             mainPanel.setPreferredSize(new Dimension(300, 30));
-//			mainPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
 
             mainPanel.setLayout(new BorderLayout());
 
@@ -150,7 +143,6 @@ public class SearchShows extends JPanel {
                         success = cc.generateShow(showname, showID);
                     } else
                     {
-                        //remove
                         add = true;
                         success = true;
                     }
@@ -174,22 +166,6 @@ public class SearchShows extends JPanel {
     }
 
     protected void drawNoSearchResultPanel() {
-//		jpSearchResult.removeAll();
-//		jpMyOwnShowPanel.removeAll();
-//		jpSearchResult.setLayout(new BorderLayout());
-//		jpMyOwnShowPanel.setLayout(new BoxLayout(jpMyOwnShowPanel, BoxLayout.Y_AXIS));
-//		JTextField tfshowName = new JTextField(tfSearchBar.getText());
-//		JButton submit = new JButton("Submit");
-//		JTextField tfNbrOfSeasons = new JTextField();
-//		jpMyOwnShowPanel.add(new JLabel("Name: "));
-//		jpMyOwnShowPanel.add(tfshowName);
-//		jpMyOwnShowPanel.add(new JLabel ("Number of Seasons"));
-//		jpMyOwnShowPanel.add(tfNbrOfSeasons);
-//		jpMyOwnShowPanel.add(submit);
-//		submit.addActionListener(e->createMyOwnShowPanel(tfSearchBar.getText(),tfNbrOfSeasons.getText()));
-//		jpSearchResult.add(jpMyOwnShowPanel, BorderLayout.NORTH);
-//		jspSearchResult.setViewportView(jpSearchResult);
-
         jpSearchResult.removeAll();
         jpMyOwnShowPanel.removeAll();
         jpSearchResult.setLayout(new BorderLayout());
@@ -209,10 +185,8 @@ public class SearchShows extends JPanel {
     }
 
     protected void addRemove(String id, JButton btnAdd, boolean add) {
-        // TODO Auto-generated method stub
         if (add == false) {
             btnAdd.setText("Remove");
-            // cc.addShow(showname);
         } else {
             btnAdd.setText("Add");
             cc.getUser().removeShow(id);
@@ -228,7 +202,6 @@ public class SearchShows extends JPanel {
 
     public static void main(String[] args) {
         ClientController cc = new ClientController();
-        User user = cc.getUser();
         SearchShows ss = new SearchShows(cc);
 
         JFrame frame = new JFrame();
