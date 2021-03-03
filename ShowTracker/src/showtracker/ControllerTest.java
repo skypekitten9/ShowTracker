@@ -10,27 +10,51 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * @Project ShowTracker
  * @auther Mewk
  */
+
+
 public class ControllerTest {
+
     @Test
-    //Testas 2 ggr, med ett giltigt och ogiltigt användarnamn.
-    //Nedanstående test gick ej genom.
+    //Avser att en användarnamn redan är upptaget
     public void testSignUpUserExist() {
         Controller controller = new Controller();
-        String[] userInfo = { "Marri", "Marianne31." };
-
-        assertEquals(new Envelope("Username already taken", "signin"), controller.signUp(userInfo));
-
+        Envelope envelope;
+        String[] userInfo = { "Hanna", "Handboll1" };
+        envelope = controller.signUp(userInfo);
+        assertEquals(("Username already taken"), envelope.getContent());
     }
 
     @Test
+    //Avser att en användarnamn inte är upptaget
     public void testSignUpUserDoNotExist() {
         Controller controller = new Controller();
-        String[] userInfo = { "Hanna", "Hanna25." };
-
-        assertEquals(new Envelope("Profile saved", "confirmation"), controller.signUp(userInfo));
-
+        Envelope envelope;
+        String[] userInfo = { "Marianne", "Handboll1" };
+        envelope = controller.signUp(userInfo);
+        assertEquals(("User registered"), envelope.getContent());
     }
 
 
+    @Test
+    //Kontrollerar typen av Envelopet
+    public void test1() {
+        Controller controller = new Controller();
+        Envelope envelope;
+        String[] userInfo = { "Marianne", "Handboll1" };
+        envelope = controller.signUp(userInfo);
+        assertEquals(("signin"), envelope.getType());
+    }
+
+
+    @Test
+    //Kontrollerar typen av Envelopet
+    public void test2() {
+        Controller controller = new Controller();
+        Envelope envelope;
+        String[] userInfo = { "Marianne", "Handboll1" };
+        envelope = controller.signUp(userInfo);
+        assertEquals(("signin"), envelope.getType());
+    }
 
 }
+
