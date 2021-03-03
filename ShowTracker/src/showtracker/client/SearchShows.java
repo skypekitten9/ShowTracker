@@ -277,7 +277,6 @@ public class SearchShows extends JPanel {
 
             show.sortEpisodes();
             cc.getUser().addShow(show);
-            JOptionPane.showMessageDialog(null, "The show has been added");
         }
     }
 }

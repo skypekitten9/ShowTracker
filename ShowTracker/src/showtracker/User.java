@@ -36,17 +36,14 @@ public class User implements Serializable {
     }
 
     public void addShow(Show show) {
-        if (shows.contains(show)) {
-            int i = 1;
-            String newName;
-            do {
-                newName = show.getName() + " (" + i++ + ")";
-            } while (shows.contains(new Show(newName)));
-            do {
-                newName = JOptionPane.showInputDialog("A show with that name already exists, please enter a new name.", newName);
-            } while (shows.contains(new Show(newName)));
-            if (newName != null)
-                show.setName(newName);
+        while (isShowNameValid((show.getName())))
+        {
+            String newName = "";
+            newName = JOptionPane.showInputDialog("A show with that name already exists or the name was empty, please enter a new name.", show.getName());
+
+            if ( newName == null) return;
+            if(newName.isBlank()) continue;
+            show.setName(newName);
         }
         shows.add(show);
     }
@@ -91,6 +88,24 @@ public class User implements Serializable {
             }
         }
         return false;
+    }
+
+    public boolean containsShowName(String name)
+    {
+        for (int i = 0; i < shows.size(); i++) {
+
+            if(shows.get(i).getName().equals(name))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean isShowNameValid(String name)
+    {
+        if(name == null || name.isBlank() || name.isEmpty()) return true;
+        return containsShowName(name);
     }
 
     public ArrayList<Show> getShows() {
