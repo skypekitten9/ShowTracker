@@ -16,7 +16,6 @@ public class SearchShows extends JPanel {
 
     private static ClientController cc = new ClientController();
 
-    private DatabasStub db = new DatabasStub();
     private User user;
     private ArrayList<Show> databasResponse = new ArrayList<Show>();
 

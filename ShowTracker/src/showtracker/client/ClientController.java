@@ -47,12 +47,6 @@ public class ClientController {
         setPanel("Logout", null);
     }
 
-    private void drawAll() {
-        pnlShowList.draw();
-        pnlHome.draw();
-        pnlProfile.draw();
-    }
-
     private void generateNavigationButton(String imagePath, String text, JPanel panel) {
         ImageIcon ii = new ImageIcon("images/" + imagePath + ".png");
         Image image = ii.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH);
@@ -91,7 +85,8 @@ public class ClientController {
             pnlShowList.draw();
         else if (panel.equals("Profile"))
             pnlProfile.draw();
-            //A new code to make a log out confirmation
+
+        //Logout Confirmation
         else if (user != null && panel.equals("Logout")) {
             int confirmDialog = JOptionPane.showConfirmDialog(null, "Are you sure you want log out?", "Confirmation", JOptionPane.YES_NO_OPTION);
             if (confirmDialog == 0) {
@@ -100,18 +95,9 @@ public class ClientController {
                 pnlLogin.revalidate();
                 if (user != null)
                     new Thread(() -> updateUser(user)).run();
-            } else {//if (confirmDialog == 1) {
+            } else {
                 return;
-            }//The end of the new code
-
-            /*The old shit
-            else if ( user != null && panel.equals("Logout")) {
-            /*setButtonsEnabled(false);
-            pnlLogin.draw();
-            pnlLogin.revalidate();
-            if (user != null)
-                new Thread(() -> updateUser(user)).run();
-            //startApplication();}*/
+            }
 
         } else if (panel.equals("Info"))
             centerPanel.add(new ShowInfo(s, this), "Info");
