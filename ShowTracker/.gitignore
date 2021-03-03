@@ -11,3 +11,7 @@ ShowTracker.iml
 /src/showtracker/server/Test.java
 .jar
 .bat
+/src/showtracker/client/META-INF/
+/src/showtracker/server/META-INF/
+/Client.jar
+/Server.jar
