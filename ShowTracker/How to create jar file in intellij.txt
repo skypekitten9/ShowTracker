@@ -1,0 +1,26 @@
+1.Navigate to File>Project Structure.
+2.In the list to the left Navigate to "Artifcats" under the "Project Settings".
+3.Click on the plus sign above the empty list.
+4.Select JAR> From Modules with dependencies.
+5.Choose Main Class to be Controller (Main class for server)
+6.Under "DIRECTORY FOR META-INF/MANIFEST.MF" add \showtracker\server\ (Should look something like this at the end: "\ShowTracker\ShowTracker\src\showtracker\server\")
+7.Rename it to Server:jar in the "Name" textarea.
+8.Click ok. Then click Apply and Ok.
+
+Now the server jar config is done.
+
+Repeat step 1 to 4.
+5.Choose Main Class to be ClientController (Main class for Client)
+6.Under "DIRECTORY FOR META-INF/MANIFEST.MF" add \showtracker\client\ (Should look something like this at the end: "\ShowTracker\ShowTracker\src\showtracker\client\")
+7.Rename it to Client:jar in the "Name" textarea.
+8.Click ok. Then click Apply and Ok.
+
+Now the config for the client jar is done.
+
+8.Navigate to Build>Build Artifact.
+9.A small window with Both artifacts should appear and "All Artifacts" Option.
+10.Click on All Artifacts>Build
+11.The jar files should now be under 2 folders in out/artifacts/
+12. Rename the Jar file in Client_jar/ to Client.jar
+13. Rename the Jar file in Server_jar/ to Server.jar
+14. Copy over both files to Showtracker module (Same folder where files/,images/,lib/ and so on is).
