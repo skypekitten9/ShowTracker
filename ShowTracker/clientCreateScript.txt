@@ -1,0 +1,2 @@
+jar cvfm0 Client.jar META-INF/manifestClient.MF -C out\production\ShowTracker\ . lib\*.jar images\*
+@PAUSE

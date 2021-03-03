@@ -1,0 +1,2 @@
+jar cvfm0 Server.jar META-INF/manifestServer.MF -C out\production\ShowTracker\ . lib\*.jar images\*
+@PAUSE
