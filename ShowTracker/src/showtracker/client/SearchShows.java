@@ -72,7 +72,7 @@ public class SearchShows extends JPanel {
                 }
             }
         });
-        JButton searchBarBtn = new JButton("search");
+        JButton searchBarBtn = new JButton("Search");
         searchBarBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
