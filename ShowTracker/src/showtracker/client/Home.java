@@ -47,6 +47,7 @@ public class Home extends JPanel {
 
             if (currentEpisode != null) {
                 JPanel panel = new JPanel(new BorderLayout());
+                panel.setMaximumSize(new Dimension(600,100));
                 panel.setBorder(BorderFactory.createBevelBorder(1));
                 JButton button = new JButton("<html>Set<br>watched</html>");
                 button.addActionListener(new EpisodeListener(currentEpisode));
