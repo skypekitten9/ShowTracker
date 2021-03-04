@@ -2,10 +2,7 @@
 package showtracker.client;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -61,7 +58,20 @@ public class SearchShows extends JPanel {
         jpSearchBar.setSize(350, 100);
         jpSearchBar.setLayout(new FlowLayout());
         tfSearchBar.setPreferredSize(new Dimension(200, 20));
-
+        tfSearchBar.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                tfSearchBar.setText("");
+            }
+        });
+        tfSearchBar.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if(e.getKeyCode() == KeyEvent.VK_ENTER){
+                    drawSearchResultPanel(tfSearchBar.getText());
+                }
+            }
+        });
         JButton searchBarBtn = new JButton("search");
         searchBarBtn.addActionListener(new ActionListener() {
             @Override
@@ -69,6 +79,7 @@ public class SearchShows extends JPanel {
                 drawSearchResultPanel(tfSearchBar.getText());
             }
         });
+
         jpSearchBar.add(tfSearchBar);
         jpSearchBar.add(searchBarBtn);
     }
