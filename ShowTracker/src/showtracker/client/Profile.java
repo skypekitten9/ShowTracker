@@ -17,7 +17,8 @@ public class Profile extends JPanel {
     private ClientController cc;
     private User user;
     private Helper helper = new Helper();
-    private ImageIcon image;
+    private ImageIcon profileImage = new ImageIcon("images/profile2.png");
+
     private JPanel southPanel;
 
     private JTextField tfConfirmPassword;
@@ -26,11 +27,11 @@ public class Profile extends JPanel {
     public Profile(ClientController cc) {
         this.cc = cc;
         this.setLayout(new BorderLayout());
+
     }
 
     public void draw() {
         user = cc.getUser();
-        add(profilePanel(), BorderLayout.NORTH);
         add(textFieldPanel(), BorderLayout.CENTER);
         changePanel();
         add(southPanel, BorderLayout.SOUTH);
@@ -38,12 +39,17 @@ public class Profile extends JPanel {
 
     public JPanel textFieldPanel() {
         JPanel panel = new JPanel();
+        panel.setLayout(null);
+        panel.setBackground(Color.WHITE);
 
-        panel.setLayout(new GridLayout(2, 2, 6, 1));
         JLabel inputName = new JLabel(user.getUserName());
-
+        Image image = profileImage.getImage().getScaledInstance(120, 120, Image.SCALE_SMOOTH);
+        JLabel lblProfile = new JLabel(new ImageIcon(image));
         JLabel namn = new JLabel("   Username:  ");
-
+        lblProfile.setBounds(115,10,120,120);
+        namn.setBounds(90,150, 130,70);
+        inputName.setBounds(170,150, 130,70);
+        panel.add(lblProfile);
         panel.add(namn);
         panel.add(inputName);
 
@@ -54,7 +60,7 @@ public class Profile extends JPanel {
     private void changePanel() {
         southPanel = new JPanel(new BorderLayout());
         JPanel panel = new JPanel();
-
+        panel.setBackground(Color.WHITE);
         JButton btnChangePass = new JButton("Change Password?");
         panel.add(btnChangePass);
 
@@ -92,22 +98,6 @@ public class Profile extends JPanel {
             }
         });
 
-    }
-
-    public JPanel profilePanel() {
-        image = getUserProfilePicture();
-        JLabel imageLabel = new JLabel(image);
-
-        JPanel topPanel = new JPanel();
-
-        topPanel.setLayout(new GridLayout(1, 1, 1, 1));
-        topPanel.add(imageLabel);
-
-        return topPanel;
-    }
-
-    public ImageIcon getUserProfilePicture() {
-        return user.getProfilePicture();
     }
 
     public JPanel changePasswordPanel() {
