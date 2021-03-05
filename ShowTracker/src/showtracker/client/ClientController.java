@@ -85,6 +85,8 @@ public class ClientController {
             pnlShowList.draw();
         else if (panel.equals("Profile"))
             pnlProfile.draw();
+        else if (panel.equals("SearchShows"))
+            pnlSearchShows.reset();
 
         //Logout Confirmation
         else if (user != null && panel.equals("Logout")) {
