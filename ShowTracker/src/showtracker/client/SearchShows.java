@@ -100,7 +100,7 @@ public class SearchShows extends JPanel {
                     + "- Make sure your search is spelled correctly<br>" + "- Try different keywords<br>"
                     + "- Or click the button below to create your own tracker" + "</html>";
 
-            JLabel lbl = new JLabel("<html><font size = '3', padding-left: 50px>" + searchRequest + "</font></html>");
+            JLabel lbl = new JLabel("<html><font size = '3', padding-left: 50px>" + searchRequest + "</font></html>", JLabel.CENTER);
             lbl.setPreferredSize(new Dimension(jpSearchResult.getWidth() - 5, jpSearchResult.getHeight() / 2));
 
             ImageIcon addImage = new ImageIcon("images/notes-add.png");

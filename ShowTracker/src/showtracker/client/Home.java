@@ -38,6 +38,17 @@ public class Home extends JPanel {
      */
     void draw() {
         scrollPane.getViewport().removeAll();
+        //Message for user if there are no shows to display
+        if (cc.getUser().getShows().isEmpty())
+        {
+            JLabel label = new JLabel("<html><p style = \"text-align:center;\"> You have nothing more to watch!<br>Add more shows by pressing the search button.</p></html>", JLabel.CENTER);
+            scrollPane.setViewportView(label);
+            scrollPane.revalidate();
+            scrollPane.repaint();
+            return;
+        }
+
+        //Else add all shows to panel
         Box box = Box.createVerticalBox();
         for (Show s : cc.getUser().getShows())
             System.out.println(s.getLastWatched());
