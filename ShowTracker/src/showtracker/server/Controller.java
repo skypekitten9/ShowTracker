@@ -36,7 +36,7 @@ public class Controller {
         switch (input.getType()) {
             case "searchShows":
                 String searchTerms = (String) input.getContent();
-                String[][] response = dbr.searchTheTVDBShows(searchTerms);
+                String[][] response = dbr.searchShows(searchTerms);
                 returnEnvelope = new Envelope(response, "shows");
                 break;
             case "getShow":

@@ -1,7 +1,6 @@
 package showtracker.server;
 
 import com.mysql.cj.jdbc.MysqlDataSource;
-import com.mysql.cj.xdevapi.JsonArray;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
@@ -16,17 +15,10 @@ import org.apache.http.HttpResponse;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import showtracker.Episode;
-import showtracker.Helper;
 import showtracker.Show;
 
-import javax.imageio.ImageIO;
-import javax.swing.*;
-import java.awt.*;
 import java.io.*;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URI;
-import java.net.URL;
 import java.net.http.HttpRequest;
 import java.sql.*;
 
@@ -239,7 +231,7 @@ public class DatabaseReader {
      * @param searchTerms String that contains the search term
      * @return a double string array that contains shows or null if no shows are found
      */
-    public String[][] searchTheTVDBShows(String searchTerms) {
+    public String[][] searchShows(String searchTerms) {
         String[] arSearchTerms = searchTerms.split(" ");
         StringBuilder sbSearchTerms = new StringBuilder(arSearchTerms[0]);
         for (int i = 1; i < arSearchTerms.length; i++)
@@ -333,7 +325,7 @@ public class DatabaseReader {
 
     }
 
-    public JSONObject searchTheTVDBShow(String id) {
+    public JSONObject searchShowID(String id) {
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create("http://www.omdbapi.com/?i="+id+"&apikey="+apiKey+"&format="+"json"))
                 .header("Accept", "application/json")
@@ -391,7 +383,7 @@ public class DatabaseReader {
 
     public Show generateShow(String[] arShow) {
         System.out.println("DatabaseReader: Generating show \"" + arShow[0] + "\"...");
-        JSONObject joShow = searchTheTVDBShow(arShow[1]);
+        JSONObject joShow = searchShowID(arShow[1]);
         Show show = new Show((String) joShow.get("Title"));
         show.setDescription((String) joShow.get("Plot"));
         show.setImage((String) joShow.get("Poster"));
