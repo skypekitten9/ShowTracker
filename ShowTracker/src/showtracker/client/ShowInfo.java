@@ -27,6 +27,30 @@ public class ShowInfo extends JPanel {
     }
 
     private void initiatePanels() {
+
+        ImageIcon infoImage = new ImageIcon("images/info.png");
+        Image infoImg = infoImage.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
+        ImageIcon infoImgIcon = new ImageIcon(infoImg);
+
+        JButton btnBack = new JButton("Back");
+        JButton infoBtn = new JButton(infoImgIcon);
+        infoBtn.setPreferredSize(new Dimension(30, 50));
+
+        btnBack.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cc.setPanel("ShowList", null);
+            }
+        });
+
+        infoBtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null,
+                        "<html><body><p style=\"width: 200px;\">" + show.getDescription() + "</p></body></html>", "Show info", JOptionPane.PLAIN_MESSAGE);
+            }
+
+        });
+
         JScrollPane scrollPane = new JScrollPane();
         scrollPane.setViewportView(mainPanel);
         scrollPane.setLayout(new ScrollPaneLayout());
@@ -35,27 +59,13 @@ public class ShowInfo extends JPanel {
         mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.PAGE_AXIS));
         mainPanel.add(Box.createHorizontalGlue());
 
-        ImageIcon infoImage = new ImageIcon("images/info.png");
-        Image infoImg = infoImage.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
-        ImageIcon infoImgIcon = new ImageIcon(infoImg);
 
-        JButton infoBtn = new JButton(infoImgIcon);
-        infoBtn.setPreferredSize(new Dimension(30, 50));
-
-        infoBtn.addActionListener(new ActionListener() {
-
-            public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null,
-                        "<html><body><p style=\"width: 200px;\">" + show.getDescription() + "</p></body></html>", "Show info", JOptionPane.PLAIN_MESSAGE);
-            }
-
-        });
-
-        JPanel headerBar = new JPanel();
+        JPanel headerBar = new JPanel(new BorderLayout());
         headerBar.setBounds(0, 0, 500, 50);
-        headerBar.setLayout(new BorderLayout());
         headerBar.setPreferredSize(new Dimension(500, 50));
-        headerBar.add(new JLabel(show.getName()));
+
+        headerBar.add(new JLabel(show.getName()), BorderLayout.NORTH);
+        headerBar.add(btnBack, BorderLayout.WEST);
         headerBar.add(infoBtn, BorderLayout.EAST);
         headerBar.setBorder(new LineBorder(Color.black));
 
@@ -67,6 +77,7 @@ public class ShowInfo extends JPanel {
     private void draw() {
 
         mainPanel.removeAll();
+
         for (SeasonListener sl : listeners) {
             JPanel panel = new JPanel();
             panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));

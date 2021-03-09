@@ -144,7 +144,6 @@ public class ClientController {
         return (String) connection.packEnvelope(updatePassword, "updatePassword");
     }
 
-
     public Show updateShow(Show show) {
         if(show.getImdbId().charAt(0) == '_'){
             JOptionPane.showMessageDialog(null, "This show has been added manually and therefore can't be updated.");
@@ -197,4 +196,5 @@ public class ClientController {
         cc.initiatePanels();
         cc.startApplication();
     }
+    
 }

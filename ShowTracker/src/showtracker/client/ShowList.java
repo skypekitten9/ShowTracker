@@ -30,7 +30,7 @@ public class ShowList extends JPanel {
         Collections.sort(cc.getUser().getShows(), new Helper.NameComparator());
         drawShowList(cc.getUser().getShows());
 
-        MyDocumentListener myDocumentListener = new MyDocumentListener();
+        MyDocumentListener myDocumentListener = new MyDocumentListener(); // Sökrutan för söka bland sparade serier
         setLayout(new BorderLayout());
         add(myDocumentListener, BorderLayout.NORTH);
 
@@ -61,7 +61,7 @@ public class ShowList extends JPanel {
                 southPanel.add(btnRemove);
 
                 JPanel mainPanel = new JPanel(new BorderLayout());
-                mainPanel.setBorder(new LineBorder(Color.DARK_GRAY));
+//                mainPanel.setBorder(new LineBorder(Color.DARK_GRAY));
 
                 mainPanel.add(middlePanel, BorderLayout.CENTER);
                 mainPanel.add(southPanel, BorderLayout.SOUTH);
@@ -120,7 +120,7 @@ public class ShowList extends JPanel {
         public MyDocumentListener() {
             javax.swing.text.Document doc = this.getDocument();
             doc.addDocumentListener(this);
-            setBackground(Color.LIGHT_GRAY);
+//            setBackground(Color.LIGHT_GRAY);
         }
 
         public void changedUpdate(DocumentEvent e) {
