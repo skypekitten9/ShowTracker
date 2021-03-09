@@ -149,7 +149,10 @@ public class Controller {
     public static void main(String[] args) {
         FlatLightLaf.install();
         try {
-            UIManager.setLookAndFeel( "com.formdev.flatlaf.FlatDarkLaf" );
+            UIManager.setLookAndFeel( "com.formdev.flatlaf.FlatDarkLaf" ); //Funkar
+            //UIManager.setLookAndFeel( "com.formdev.flatlaf.FlatIntelliJLaf" ); // Får ej att funka just nu.
+            //UIManager.setLookAndFeel( "com.formdev.flatlaf.FlatDarculaLaf" ); //Funkar
+
         } catch (Exception e) {
             e.printStackTrace();
             System.err.println( "Failed to initialize LaF" );

@@ -17,7 +17,7 @@ public class Profile extends JPanel {
     private ClientController cc;
     private User user;
     private Helper helper = new Helper();
-    private ImageIcon profileImage = new ImageIcon("images/profile2.png");
+    private ImageIcon profileImage = new ImageIcon("images/profile.png");
 
     private JPanel southPanel;
 

@@ -187,6 +187,8 @@ public class ClientController {
         FlatLightLaf.install();
         try {
             UIManager.setLookAndFeel( "com.formdev.flatlaf.FlatDarkLaf" );
+            //UIManager.setLookAndFeel( "com.formdev.flatlaf.FlatIntelliJLaf" );
+            //UIManager.setLookAndFeel( "com.formdev.flatlaf.FlatDarculaLaf" );
         } catch (Exception e) {
             e.printStackTrace();
             System.err.println( "Failed to initialize LaF" );
