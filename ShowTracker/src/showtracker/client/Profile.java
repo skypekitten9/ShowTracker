@@ -40,7 +40,7 @@ public class Profile extends JPanel {
     public JPanel textFieldPanel() {
         JPanel panel = new JPanel();
         panel.setLayout(null);
-        panel.setBackground(Color.WHITE);
+//        panel.setBackground(Color.WHITE);
 
         JLabel inputName = new JLabel(user.getUserName());
         Image image = profileImage.getImage().getScaledInstance(120, 120, Image.SCALE_SMOOTH);
@@ -60,7 +60,7 @@ public class Profile extends JPanel {
     private void changePanel() {
         southPanel = new JPanel(new BorderLayout());
         JPanel panel = new JPanel();
-        panel.setBackground(Color.WHITE);
+//        panel.setBackground(Color.WHITE);
         JButton btnChangePass = new JButton("Change Password?");
         panel.add(btnChangePass);
 
