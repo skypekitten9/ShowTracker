@@ -1,12 +1,6 @@
 package showtracker.client;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Image;
+import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -54,11 +48,11 @@ public class ShowList extends JPanel {
         if (shows.size() > 0) {
             for (Show s : shows) {
                 JPanel middlePanel = new JPanel(new FlowLayout());
-                JPanel southPanel = new JPanel(new FlowLayout());
+                JPanel southPanel = new JPanel(new GridLayout(3, 1));
 
-                JButton btnInfo = new JButton("Mark episode");
-                JButton btnUpdate = new JButton("Update show");
-                JButton btnRemove = new JButton("Remove");
+                JButton btnInfo = new JButton("Mark watched episodes");
+                JButton btnUpdate = new JButton("Check for new episodes");
+                JButton btnRemove = new JButton("Remove show from list");
 
                 middlePanel.add(new JLabel("<html><body><p style=\"width: 200px; text-align: center;\">" + s.getName() + "</p></body></html>"));
 
