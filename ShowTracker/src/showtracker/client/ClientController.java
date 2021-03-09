@@ -6,6 +6,7 @@ import java.awt.event.ComponentEvent;
 
 import javax.swing.*;
 
+import com.formdev.flatlaf.FlatLightLaf;
 import showtracker.Show;
 import showtracker.User;
 
@@ -183,6 +184,13 @@ public class ClientController {
     }
 
     public static void main(String[] args) {
+        FlatLightLaf.install();
+        try {
+            UIManager.setLookAndFeel( "com.formdev.flatlaf.FlatDarkLaf" );
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.err.println( "Failed to initialize LaF" );
+        }
         ClientController cc = new ClientController();
         cc.initiatePanels();
         cc.startApplication();

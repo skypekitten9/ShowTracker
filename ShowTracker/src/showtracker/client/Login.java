@@ -35,19 +35,19 @@ public class Login extends JPanel {
         setLayout(null);
         pnlLog.setLayout(null);
         pnlSign.setLayout(null);
-        this.setBackground(Color.white);
-        ImageIcon ii = new ImageIcon("images/show.png");
+//        this.setBackground(Color.white);
+        ImageIcon ii = new ImageIcon("images/show_transparant.png");
         Image image = ii.getImage().getScaledInstance(190, 150, Image.SCALE_SMOOTH);
         JLabel lbLogo = new JLabel(new ImageIcon(image));
         add(pnlLog);
         add(pnlSign);
         pnlLog.setBounds(38,190,260,130);
         pnlLog.setBorder(BorderFactory.createTitledBorder("Log in"));
-        pnlLog.setBackground(Color.white);
+//        pnlLog.setBackground(Color.white);
 
         pnlSign.setBounds(38,328,260,60);
         pnlSign.setBorder(BorderFactory.createTitledBorder("New here?"));
-        pnlSign.setBackground(Color.white);
+//        pnlSign.setBackground(Color.white);
 
         btLogIn.addActionListener(e -> checkUserLogin());
         btSignUp.addActionListener(e -> signUp());

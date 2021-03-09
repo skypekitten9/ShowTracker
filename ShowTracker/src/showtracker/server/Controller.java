@@ -1,10 +1,12 @@
 package showtracker.server;
 
+import com.formdev.flatlaf.FlatLightLaf;
 import showtracker.Envelope;
 import showtracker.Helper;
 import showtracker.Show;
 import showtracker.User;
 
+import javax.swing.*;
 import java.io.File;
 import java.util.HashMap;
 
@@ -145,6 +147,14 @@ public class Controller {
     }
 
     public static void main(String[] args) {
+        FlatLightLaf.install();
+        try {
+            UIManager.setLookAndFeel( "com.formdev.flatlaf.FlatDarkLaf" );
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.err.println( "Failed to initialize LaF" );
+        }
+
         Controller controller = new Controller();
     }
 }
