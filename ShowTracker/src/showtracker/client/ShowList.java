@@ -40,9 +40,9 @@ public class ShowList extends JPanel {
     }
 
     void drawShowList(ArrayList<Show> shows) {
-            GridBagConstraints gbc = new GridBagConstraints();
-            panelShowList.setLayout(new GridBagLayout());
-            gbc.fill = GridBagConstraints.HORIZONTAL;
+        GridBagConstraints gbc = new GridBagConstraints();
+        panelShowList.setLayout(new GridBagLayout());
+        gbc.fill = GridBagConstraints.HORIZONTAL;
 
         panelShowList.removeAll();
         if (shows.size() > 0) {
@@ -82,8 +82,15 @@ public class ShowList extends JPanel {
                     private Show show = s;
 
                     public void actionPerformed(ActionEvent e) {
-                        cc.getUser().removeShow(show.getImdbId());
-                        drawShowList(cc.getUser().getShows());
+
+                        // value 0 för YES, 1 NO, 2 CANCEL
+                        int removalChioce = JOptionPane.showConfirmDialog(null, "Are you sure you want to remove " + s.getName() + "?");
+
+                        if (removalChioce == 0) {
+                            cc.getUser().removeShow(show.getImdbId());
+                            drawShowList(cc.getUser().getShows());
+                        }
+
                     }
                 });
 
