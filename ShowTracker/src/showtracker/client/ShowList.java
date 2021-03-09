@@ -56,8 +56,8 @@ public class ShowList extends JPanel {
                 JPanel middlePanel = new JPanel(new FlowLayout());
                 JPanel southPanel = new JPanel(new FlowLayout());
 
-                JButton btnInfo = new JButton("Info");
-                JButton btnUpdate = new JButton("Update");
+                JButton btnInfo = new JButton("Mark episode");
+                JButton btnUpdate = new JButton("Update show");
                 JButton btnRemove = new JButton("Remove");
 
                 middlePanel.add(new JLabel("<html><body><p style=\"width: 200px; text-align: center;\">" + s.getName() + "</p></body></html>"));
