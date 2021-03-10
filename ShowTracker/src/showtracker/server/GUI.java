@@ -1,14 +1,10 @@
 package showtracker.server;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.IOException;
-import java.net.URI;
-
-import static javax.swing.JOptionPane.OK_CANCEL_OPTION;
-import static javax.swing.JOptionPane.PLAIN_MESSAGE;
 
 /**
  * @author Filip Spånberg
@@ -18,6 +14,7 @@ public class GUI {
     private Controller controller;
     private JPanel pnMain = new JPanel();
     private JLabel lbActiveThreads = new JLabel("Active threads: 0");
+    private JLabel lblChooseNbrOfThreads = new JLabel("Number of threads to run: ");
     private JComboBox cbThreadNumber;
     private JButton bnStart = new JButton("Start server");
     private JButton bnStop = new JButton("Stop server");
@@ -26,11 +23,9 @@ public class GUI {
 
     public GUI(Controller controller) {
         this.controller = controller;
-
-        String[] arThreadNumber = {"1","2","3","4","5","6","7","8","9","10"};
+        String[] arThreadNumber = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10"};
         cbThreadNumber = new JComboBox(arThreadNumber);
-
-        pnMain.setLayout(new GridLayout(3,2));
+        pnMain.setLayout(new BorderLayout());
     }
 
     private void startConnection(int threads) {
@@ -49,16 +44,26 @@ public class GUI {
         lbActiveThreads.setText("Active threads: " + i);
     }
 
-
-
-
     public void start() {
+
         bnStart.addActionListener(e -> startConnection(Integer.parseInt((String) cbThreadNumber.getSelectedItem())));
-        pnMain.add(bnStart);
-        pnMain.add(cbThreadNumber);
         bnStop.addActionListener(e -> stopConnection());
-        pnMain.add(bnStop);
-        pnMain.add(lbActiveThreads);
+
+        JPanel pnlThreads = new JPanel();
+        pnlThreads.add(lblChooseNbrOfThreads);
+        pnlThreads.add(cbThreadNumber);
+
+        JPanel pnlBtn = new JPanel();
+        pnlBtn.add(bnStart);
+        pnlBtn.add(bnStop);
+
+        JPanel pnlSouth = new JPanel();
+        pnlSouth.add(lbActiveThreads);
+
+        pnMain.add(pnlThreads, BorderLayout.NORTH);
+        pnMain.add(pnlBtn, BorderLayout.CENTER);
+        pnMain.add(pnlSouth, BorderLayout.SOUTH);
+
         bnStop.setEnabled(false);
 
         frame.add(pnMain);
