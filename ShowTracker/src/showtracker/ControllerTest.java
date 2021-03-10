@@ -3,7 +3,8 @@ package showtracker;
 import org.junit.Test;
 import showtracker.server.Controller;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static junit.framework.TestCase.assertEquals;
+
 
 /**
  * @Created 02/03/2021

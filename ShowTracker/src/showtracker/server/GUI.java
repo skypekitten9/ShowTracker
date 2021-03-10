@@ -21,13 +21,12 @@ public class GUI {
     private JComboBox cbThreadNumber;
     private JButton bnStart = new JButton("Start server");
     private JButton bnStop = new JButton("Stop server");
-    private JButton bnPassword = new JButton("Change password");
+
     private JFrame frame = new JFrame("ShowTracker server");
 
     public GUI(Controller controller) {
         this.controller = controller;
-        //SpinnerModel smThreadNumber = new SpinnerNumberModel(1, 1, 10, 1);
-        //int[] arThreadNumber = {1,2,3,4,5,6,7,8,9,10};
+
         String[] arThreadNumber = {"1","2","3","4","5","6","7","8","9","10"};
         cbThreadNumber = new JComboBox(arThreadNumber);
 
@@ -78,20 +77,6 @@ public class GUI {
         }
     }
 
-    public void testPane() {
-        JTextField tfOldPass = new JTextField();
-        JTextField tfNewPass = new JTextField();
-        JPanel pnPass = new JPanel();
-        pnPass.setLayout(new GridLayout(2, 1));
-        pnPass.add(tfOldPass);
-        pnPass.add(tfNewPass);
-        int res = JOptionPane.showConfirmDialog(null, pnPass,
-                "Enter your old and new password", JOptionPane.OK_CANCEL_OPTION, PLAIN_MESSAGE);
-        if (res == JOptionPane.OK_OPTION) {
-            System.out.println("Old: " + tfOldPass.getText());
-            System.out.println("New: " + tfNewPass.getText());
-        }
-    }
 
     public void start() {
         bnStart.addActionListener(e -> startConnection(Integer.parseInt((String) cbThreadNumber.getSelectedItem())));
@@ -104,8 +89,7 @@ public class GUI {
         JButton bnAuthenticate = new JButton("Authenticate");
         bnAuthenticate.addActionListener(e -> authenticateTheTVDB());
         pnMain.add(bnAuthenticate);
-        bnPassword.addActionListener(e -> testPane());
-        pnMain.add(bnPassword);
+
         frame.add(pnMain);
         frame.setVisible(true);
         frame.pack();
@@ -119,4 +103,34 @@ public class GUI {
             }
         });
     }
+
+    //TODO: Ta bort koden när testat ordentligt:
+
+    // KOnstruktorn
+    //        //SpinnerModel smThreadNumber = new SpinnerNumberModel(1, 1, 10, 1);
+    //        //int[] arThreadNumber = {1,2,3,4,5,6,7,8,9,10};
+
+    //instansvariabel:
+    //    private JButton bnPassword = new JButton("Change password");
+
+    //start()-metoden:
+            //bnPassword.addActionListener(e -> testPane());
+//        pnMain.add(bnPassword);
+
+//    public void testPane() {
+//        JTextField tfOldPass = new JTextField();
+//        JTextField tfNewPass = new JTextField();
+//        JPanel pnPass = new JPanel();
+//        pnPass.setLayout(new GridLayout(2, 1));
+//        pnPass.add(tfOldPass);
+//        pnPass.add(tfNewPass);
+//        int res = JOptionPane.showConfirmDialog(null, pnPass,
+//                "Enter your old and new password", JOptionPane.OK_CANCEL_OPTION, PLAIN_MESSAGE);
+//        if (res == JOptionPane.OK_OPTION) {
+//            System.out.println("Old: " + tfOldPass.getText());
+//            System.out.println("New: " + tfNewPass.getText());
+//        }
+//    }
+
+
 }
