@@ -50,15 +50,6 @@ public class GUI {
     }
 
 
-    private static void openBrowser() {
-        if (Desktop.isDesktopSupported()) {
-            try {
-                Desktop.getDesktop().browse(new URI("https://api.thetvdb.com/swagger#/"));
-            } catch (Exception e) {
-                System.out.println("GUI: " + e);
-            }
-        }
-    }
 
 
     public void start() {
@@ -133,6 +124,16 @@ public class GUI {
 //        panel.add(button, BorderLayout.SOUTH);
 //        panel.add(textArea, BorderLayout.CENTER);
 //        JOptionPane.showMessageDialog(null, panel);
+//    }
+
+//    private static void openBrowser() {
+//        if (Desktop.isDesktopSupported()) {
+//            try {
+//                Desktop.getDesktop().browse(new URI("https://api.thetvdb.com/swagger#/"));
+//            } catch (Exception e) {
+//                System.out.println("GUI: " + e);
+//            }
+//        }
 //    }
 
 
