@@ -140,18 +140,13 @@ public class Controller {
         gui.setActiveThreads(i);
     }
 
-    public String authenticateTheTVDB() {
-        String token = dbr.authenticateTheTVDB();
-        Helper.writeToFile(token, "files/token.obj");
-        return token;
-    }
+
 
     public static void main(String[] args) {
         FlatLightLaf.install();
         try {
             UIManager.setLookAndFeel( "com.formdev.flatlaf.FlatDarkLaf" ); //Funkar
-            //UIManager.setLookAndFeel( "com.formdev.flatlaf.FlatIntelliJLaf" ); // Får ej att funka just nu.
-            //UIManager.setLookAndFeel( "com.formdev.flatlaf.FlatDarculaLaf" ); //Funkar
+
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -160,4 +155,13 @@ public class Controller {
 
         Controller controller = new Controller();
     }
+
+    // TODO: ta bort kod efter testning
+
+//    public String authenticateTheTVDB() {
+//        String token = dbr.authenticateTheTVDB();
+//        Helper.writeToFile(token, "files/token.obj");
+//        return token;
+//    }
+
 }

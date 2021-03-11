@@ -313,7 +313,7 @@ public class SearchShows extends JPanel {
         }
     }
 
-    
+
     private void showFlashMsg(String title, String msg) {
         JOptionPane pane = new JOptionPane(msg,
                 JOptionPane.INFORMATION_MESSAGE, JOptionPane.DEFAULT_OPTION, null, new Object[]{}, null);

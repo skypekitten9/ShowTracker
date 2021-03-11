@@ -13,7 +13,7 @@ import java.awt.event.WindowEvent;
 public class GUI {
     private Controller controller;
     private JPanel pnMain = new JPanel();
-    private JLabel lbActiveThreads = new JLabel("Active threads: 0");
+    //private JLabel lbActiveThreads = new JLabel("Active threads: 0");
     private JLabel lblChooseNbrOfThreads = new JLabel("Number of threads to run: ");
     private JComboBox cbThreadNumber;
     private JButton bnStart = new JButton("Start server");
@@ -41,7 +41,9 @@ public class GUI {
     }
 
     public void setActiveThreads(int i) {
-        lbActiveThreads.setText("Active threads: " + i);
+
+
+       // lbActiveThreads.setText("Server startad");
     }
 
     public void start() {
@@ -50,15 +52,15 @@ public class GUI {
         bnStop.addActionListener(e -> stopConnection());
 
         JPanel pnlThreads = new JPanel();
-        pnlThreads.add(lblChooseNbrOfThreads);
-        pnlThreads.add(cbThreadNumber);
+        //pnlThreads.add(lblChooseNbrOfThreads);
+        //pnlThreads.add(cbThreadNumber);
 
         JPanel pnlBtn = new JPanel();
         pnlBtn.add(bnStart);
         pnlBtn.add(bnStop);
 
         JPanel pnlSouth = new JPanel();
-        pnlSouth.add(lbActiveThreads);
+        //pnlSouth.add(lbActiveThreads);
 
         pnMain.add(pnlThreads, BorderLayout.NORTH);
         pnMain.add(pnlBtn, BorderLayout.CENTER);
