@@ -20,6 +20,7 @@ public class Profile extends JPanel {
     private User user;
     private Helper helper = new Helper();
 
+    private JCheckBox cbxSetDarkMode = new JCheckBox();
     private ImageIcon profileImage = new ImageIcon("images/profile.png");
 
     private JTextField tfConfirmPassword;
@@ -40,6 +41,15 @@ public class Profile extends JPanel {
         add(textFieldPanel(), BorderLayout.CENTER);
         changePanel();
         add(southPanel, BorderLayout.SOUTH);
+        add(northPanel(), BorderLayout.NORTH);
+    }
+
+    public JPanel northPanel(){
+        JPanel pnlNorth = new JPanel();
+        pnlNorth.setBackground(Color.ORANGE);
+
+        pnlNorth.add(cbxSetDarkMode);
+        return pnlNorth;
     }
 
     public JPanel textFieldPanel() {
