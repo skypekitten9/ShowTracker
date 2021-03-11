@@ -33,12 +33,14 @@ public class Profile extends JPanel {
     }
 
     public void draw() {
+        removeAll();
+        updateUI();
+
         user = cc.getUser();
         add(textFieldPanel(), BorderLayout.CENTER);
         changePanel();
         add(southPanel, BorderLayout.SOUTH);
     }
-
 
     public JPanel textFieldPanel() {
 

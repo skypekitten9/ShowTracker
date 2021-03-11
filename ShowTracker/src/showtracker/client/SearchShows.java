@@ -42,7 +42,6 @@ public class SearchShows extends JPanel {
     }
 
     private void draw() {
-
         drawSearchBarPanel();
 
         setLayout(new BorderLayout());
@@ -66,7 +65,7 @@ public class SearchShows extends JPanel {
         tfSearchBar.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
-                if(e.getKeyCode() == KeyEvent.VK_ENTER){
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
                     drawSearchResultPanel(tfSearchBar.getText());
                 }
             }
@@ -127,7 +126,7 @@ public class SearchShows extends JPanel {
         for (String[] s : searchResults) {
             JPanel mainPanel = new JPanel();
             ImageIcon imageIcon = null;
-            if(s[2] != null && !s[2].equalsIgnoreCase("N/A")){
+            if (s[2] != null && !s[2].equalsIgnoreCase("N/A")) {
                 try {
                     URL url = new URL(s[2]);
                     Image i = ImageIO.read(url);
@@ -137,25 +136,23 @@ public class SearchShows extends JPanel {
                     e.printStackTrace();
                 }
             }
-            if(imageIcon == null){
+            if (imageIcon == null) {
                 mainPanel.setPreferredSize(new Dimension(300, 30));
-            }
-            else mainPanel.setPreferredSize(new Dimension(300, 50));
+            } else mainPanel.setPreferredSize(new Dimension(300, 50));
 
 
             mainPanel.setLayout(new BorderLayout());
             System.out.println(s[2]);
             boolean addStart = true;
             String buttonTag = "Add";
-            if (cc.getUser().containsShow(s[1]))
-            {
+            if (cc.getUser().containsShow(s[1])) {
                 buttonTag = "Remove";
                 addStart = false;
             }
             JButton btnAdd = new JButton(buttonTag);
 
-            if(imageIcon != null){
-                JLabel imageLabel = new JLabel(new ImageIcon(imageIcon.getImage().getScaledInstance(50,50, Image.SCALE_SMOOTH)), JLabel.CENTER);
+            if (imageIcon != null) {
+                JLabel imageLabel = new JLabel(new ImageIcon(imageIcon.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH)), JLabel.CENTER);
                 ImageIcon finalImageIcon = imageIcon;
                 imageLabel.addMouseListener(new MouseAdapter() {
                     @Override
@@ -164,7 +161,7 @@ public class SearchShows extends JPanel {
                     }
 
                 });
-                mainPanel.add(imageLabel,BorderLayout.EAST);
+                mainPanel.add(imageLabel, BorderLayout.EAST);
             }
 
 
@@ -186,12 +183,13 @@ public class SearchShows extends JPanel {
                     if (add) {
                         add = false;
                         success = cc.generateShow(showname, showID, showimage);
-                    } else
-                    {
+                        showFlashMsg("Show added", showname + " is added to your list");
+
+                    } else {
                         add = true;
                         success = true;
                     }
-                    if(success) addRemove(s[1], btnAdd, add);
+                    if (success) addRemove(s[1], btnAdd, add);
                     else add = true;
                 }
             });
@@ -239,8 +237,7 @@ public class SearchShows extends JPanel {
 
     }
 
-    public void reset()
-    {
+    public void reset() {
         jpSearchResult.removeAll();
         tfSearchBar.setText("Enter name of the show here");
     }
@@ -301,10 +298,10 @@ public class SearchShows extends JPanel {
         }
         if (parseIntSuccess) {
             Show show = new Show(tfShowName.getText());
-            show.setImdbId("_"+show.getName());
+            show.setImdbId("_" + show.getName());
             show.setDescription("This show has been added manually and therefore has no description.");
             for (int s = 0; s < tfSeasons.length; s++)
-                for (int e = 0; e < episodes[s]; e++){
+                for (int e = 0; e < episodes[s]; e++) {
                     Episode episode = new Episode(show, e + 1, s + 1);
                     episode.setName("");
                     episode.setDescription("This episode has been added manually and therefore has no description.");
@@ -315,4 +312,23 @@ public class SearchShows extends JPanel {
             cc.getUser().addShow(show);
         }
     }
+
+    
+    private void showFlashMsg(String title, String msg) {
+        JOptionPane pane = new JOptionPane(msg,
+                JOptionPane.INFORMATION_MESSAGE, JOptionPane.DEFAULT_OPTION, null, new Object[]{}, null);
+        final JDialog dialog = pane.createDialog(null, title);
+
+        Timer timer = new Timer(1500, new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                dialog.setVisible(false);
+                dialog.dispose();
+            }
+        });
+        timer.setRepeats(false);
+        timer.start();
+        dialog.setVisible(true);
+        dialog.dispose();
+    }
+
 }

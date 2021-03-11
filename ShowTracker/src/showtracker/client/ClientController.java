@@ -85,8 +85,6 @@ public class ClientController {
         else if (panel.equals("ShowList"))
             pnlShowList.draw();
         else if (panel.equals("Profile")) {
-            pnlProfile.removeAll();
-            pnlProfile.updateUI();
             pnlProfile.draw();
         }
         else if (panel.equals("SearchShows"))
