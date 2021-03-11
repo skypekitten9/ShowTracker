@@ -4,6 +4,8 @@ package showtracker.client;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -17,17 +19,17 @@ public class Profile extends JPanel {
     private ClientController cc;
     private User user;
     private Helper helper = new Helper();
-    private ImageIcon profileImage = new ImageIcon("images/profile.png");
 
-    private JPanel southPanel;
+    private ImageIcon profileImage = new ImageIcon("images/profile.png");
 
     private JTextField tfConfirmPassword;
     private JPasswordField password;
 
+    private JPanel southPanel;
+
     public Profile(ClientController cc) {
         this.cc = cc;
         this.setLayout(new BorderLayout());
-
     }
 
     public void draw() {
@@ -37,21 +39,19 @@ public class Profile extends JPanel {
         add(southPanel, BorderLayout.SOUTH);
     }
 
+
     public JPanel textFieldPanel() {
+
         JPanel panel = new JPanel();
         panel.setLayout(null);
-//        panel.setBackground(Color.WHITE);
-
-        JLabel inputName = new JLabel(user.getUserName());
         Image image = profileImage.getImage().getScaledInstance(120, 120, Image.SCALE_SMOOTH);
         JLabel lblProfile = new JLabel(new ImageIcon(image));
-        JLabel namn = new JLabel("   Username:  ");
-        lblProfile.setBounds(115,10,120,120);
-        namn.setBounds(90,150, 130,70);
-        inputName.setBounds(170,150, 130,70);
+        JLabel namn = new JLabel("   Username:  " + user.getUserName());
+        lblProfile.setBounds(115, 10, 120, 120);
+        namn.setBounds(90, 150, 130, 70);
+
         panel.add(lblProfile);
         panel.add(namn);
-        panel.add(inputName);
 
         return panel;
 
@@ -135,22 +135,5 @@ public class Profile extends JPanel {
         return panel;
     }
 
-    public static void main(String[] args) throws Exception {
-        ClientController cc = new ClientController();
-        User user = new User("namn", null);
-        cc.setUser(user);
 
-        Profile profile = new Profile(cc);
-        profile.draw();
-        JFrame frame = new JFrame();
-        frame.setTitle("Profile");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.add(profile);
-        frame.setLocationRelativeTo(null);
-
-        frame.setVisible(true);
-        frame.pack();
-        frame.setSize(350, 500);
-
-    }
 }

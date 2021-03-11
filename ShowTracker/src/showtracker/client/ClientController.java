@@ -84,12 +84,15 @@ public class ClientController {
             pnlHome.draw();
         else if (panel.equals("ShowList"))
             pnlShowList.draw();
-        else if (panel.equals("Profile"))
+        else if (panel.equals("Profile")) {
+            pnlProfile.removeAll();
+            pnlProfile.updateUI();
             pnlProfile.draw();
+        }
         else if (panel.equals("SearchShows"))
             pnlSearchShows.reset();
 
-        //Logout Confirmation
+            //Logout Confirmation
         else if (user != null && panel.equals("Logout")) {
             int confirmDialog = JOptionPane.showConfirmDialog(null, "Are you sure you want log out?", "Confirmation", JOptionPane.YES_NO_OPTION);
             if (confirmDialog == 0) {
@@ -119,8 +122,7 @@ public class ClientController {
         return (User) connection.packEnvelope(userInfo, "logIn");
     }
 
-    public boolean isUsernameAvailable(String username)
-    {
+    public boolean isUsernameAvailable(String username) {
         return (boolean) connection.packEnvelope(username, "isUsernameAvailable");
     }
 
@@ -142,10 +144,11 @@ public class ClientController {
     public String updatePassword(String username, String oldPassword, String newPassword) {
         String[] updatePassword = {username, oldPassword, newPassword};
         return (String) connection.packEnvelope(updatePassword, "updatePassword");
+
     }
 
     public Show updateShow(Show show) {
-        if(show.getImdbId().charAt(0) == '_'){
+        if (show.getImdbId().charAt(0) == '_') {
             JOptionPane.showMessageDialog(null, "This show has been added manually and therefore can't be updated.");
             return null;
         }
@@ -164,7 +167,7 @@ public class ClientController {
         if (user.containsShow(showID)) return false;
         String[] generateShowRequest = {showname, showID};
         Show show = (Show) connection.packEnvelope(generateShowRequest, "getShow");
-        if(show.getSeasons().isEmpty()){
+        if (show.getSeasons().isEmpty()) {
             JOptionPane.showMessageDialog(null, "This show has no episodes and was therefore not added.");
             return false;
         }
@@ -182,19 +185,35 @@ public class ClientController {
         this.user = user;
     }
 
+
+    public void setDarkmode(boolean bool){
+        if(bool==true){
+            try {
+                UIManager.setLookAndFeel("com.formdev.flatlaf.FlatDarkLaf");
+                System.out.println("Vald UIManager: Darkmode");
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                System.err.println("Failed to initialize LaF");
+            }
+        } else {
+            try {
+                UIManager.setLookAndFeel("com.formdev.flatlaf.FlatLightLaf");
+                System.out.println("Vald UIManager: Light mode");
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                System.err.println("Failed to initialize LaF");
+            }
+        }
+    }
+
     public static void main(String[] args) {
         FlatLightLaf.install();
-        try {
-            UIManager.setLookAndFeel( "com.formdev.flatlaf.FlatDarkLaf" );
-            //UIManager.setLookAndFeel( "com.formdev.flatlaf.FlatIntelliJLaf" );
-            //UIManager.setLookAndFeel( "com.formdev.flatlaf.FlatDarculaLaf" );
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.err.println( "Failed to initialize LaF" );
-        }
         ClientController cc = new ClientController();
+        cc.setDarkmode(true); // true för mörk och false för ljus
         cc.initiatePanels();
         cc.startApplication();
     }
-    
+
 }

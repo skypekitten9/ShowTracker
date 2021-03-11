@@ -158,18 +158,4 @@ public class Login extends JPanel {
             revalidate();
         }
     }
-
-    public static void main(String[] args) {
-        JFrame frame = new JFrame();
-
-        Login log = new Login(new ClientController());
-        log.draw();
-        frame.setTitle("Login");
-        frame.setPreferredSize(new Dimension(360, 500));
-        frame.setLocationRelativeTo(null);
-        frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
-        frame.add(log);
-        frame.pack();
-        frame.setVisible(true);
-    }
 }

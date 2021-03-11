@@ -245,15 +245,6 @@ public class SearchShows extends JPanel {
         tfSearchBar.setText("Enter name of the show here");
     }
 
-    public static void main(String[] args) {
-        ClientController cc = new ClientController();
-        SearchShows ss = new SearchShows(cc);
-
-        JFrame frame = new JFrame();
-        frame.add(ss);
-        frame.setSize(new Dimension(350, 500));
-        frame.setVisible(true);
-    }
 
     private void createMyOwnShowPanel(String input) {
         try {

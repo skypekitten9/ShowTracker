@@ -61,7 +61,7 @@ public class ShowList extends JPanel {
                 southPanel.add(btnRemove);
 
                 JPanel mainPanel = new JPanel(new BorderLayout());
-//                mainPanel.setBorder(new LineBorder(Color.DARK_GRAY));
+
 
                 mainPanel.add(middlePanel, BorderLayout.CENTER);
                 mainPanel.add(southPanel, BorderLayout.SOUTH);
@@ -120,7 +120,6 @@ public class ShowList extends JPanel {
         public MyDocumentListener() {
             javax.swing.text.Document doc = this.getDocument();
             doc.addDocumentListener(this);
-//            setBackground(Color.LIGHT_GRAY);
         }
 
         public void changedUpdate(DocumentEvent e) {
@@ -146,25 +145,4 @@ public class ShowList extends JPanel {
             drawShowList(searchShows);
         }
     }
-
-    public static void main(String[] args) {
-        ClientController cc = new ClientController();
-        User user = new User("namn", null);
-        String[] show = {"Game of thrones", "Walking dead", "Game of luck season 4 episode 15"};
-        cc.setUser(user);
-
-        ShowList shoList = new ShowList(cc);
-        shoList.draw();
-        JFrame frame = new JFrame();
-
-        frame.setTitle("Show List");
-        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        frame.add(shoList);
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
-        frame.pack();
-
-        frame.setSize(new Dimension(350, 400));
-    }
-
 }
