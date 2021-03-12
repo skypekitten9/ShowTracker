@@ -42,7 +42,7 @@ public class SearchShows extends JPanel {
         draw();
     }
 
-    public void redrawComponents(){
+    public void redrawComponents() {
 
         tfSearchBar.updateUI();
         jpSearchBar.updateUI();
@@ -72,7 +72,6 @@ public class SearchShows extends JPanel {
         jspSearchResult.getVerticalScrollBar().setUnitIncrement(16);
 
     }
-
 
 
     private void drawSearchBarPanel() {
@@ -206,14 +205,17 @@ public class SearchShows extends JPanel {
                     if (add) {
                         add = false;
                         success = cc.generateShow(showname, showID, showimage);
-                        showFlashMsg("Show added", showname + " is added to your list");
 
                     } else {
                         add = true;
                         success = true;
+
                     }
-                    if (success) addRemove(s[1], btnAdd, add);
-                    else add = true;
+                    if (success) {
+                        addRemove(s[1], btnAdd, add);
+                        showFlashMsg("Show added", showname + " is added to your list");
+                    } else add = true;
+
                 }
             });
             mainPanel.add(btnAdd, BorderLayout.WEST);
