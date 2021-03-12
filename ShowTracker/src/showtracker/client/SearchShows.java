@@ -51,12 +51,11 @@ public class SearchShows extends JPanel {
         jpMyOwnShowPanel.updateUI();
         jpMyShow.updateUI();
 
-        jspSearchResult.getViewport().setBackground(getBackground());
+
         jspSearchResult.updateUI();
 
         searchBarBtn.updateUI();
-        updateUI();
-        removeAll();
+
         draw();
 
 
@@ -67,7 +66,7 @@ public class SearchShows extends JPanel {
         drawSearchBarPanel();
 
         setLayout(new BorderLayout());
-        
+
         add(jpSearchBar, BorderLayout.NORTH);
         add(jspSearchResult, BorderLayout.CENTER);
         jspSearchResult.getVerticalScrollBar().setUnitIncrement(16);
@@ -79,6 +78,7 @@ public class SearchShows extends JPanel {
         jpSearchBar.setSize(350, 100);
         jpSearchBar.setLayout(new FlowLayout());
         tfSearchBar.setPreferredSize(new Dimension(200, 20));
+        jspSearchResult.getViewport().setBackground(UIManager.getColor("panel.background"));
         tfSearchBar.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {

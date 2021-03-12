@@ -63,7 +63,7 @@ public class ClientController {
 
     public void reDrawPanels(){
         //TODO:
-        // ful vit kant i Home, sökrutan ändars ej till vit efter darkmode, bakgrunden vit i sökfliken
+        // ful vit kant i Home, sökrutan ändars ej till vit efter darkmode
         //målar om de olika panelerna
 
         pnlProfile.draw();
