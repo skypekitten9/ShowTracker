@@ -28,25 +28,25 @@ public class Home extends JPanel {
 
     public Home(ClientController cc) {
         this.cc = cc;
-        add(scrollPane);
+
+        scrollPane.getViewport().setBackground(UIManager.getColor("panel.background"));
         scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         scrollPane.setPreferredSize(new Dimension(335, 400));
+        add(scrollPane);
     }
 
     /**
      * Metod för att rita upp de senaste avsnitten
      */
     void draw() {
-       // updateUI();
 
-
-        scrollPane.getViewport().removeAll();
+        scrollPane.updateUI();
+        //scrollPane.getViewport().removeAll();
         scrollPane.getViewport().updateUI();
-        //scrollPane.updateUI();
+
 
         //Message for user if there are no shows to display
-        if (cc.getUser().getShows().isEmpty())
-        {
+        if (cc.getUser().getShows().isEmpty()) {
             JLabel label = new JLabel("<html><p style = \"text-align:center;\"> You have nothing more to watch!<br>Add more shows by pressing the search button.</p></html>", JLabel.CENTER);
             scrollPane.setViewportView(label);
             scrollPane.revalidate();
@@ -64,7 +64,7 @@ public class Home extends JPanel {
 
             if (currentEpisode != null) {
                 JPanel panel = new JPanel(new BorderLayout());
-                panel.setMaximumSize(new Dimension(600,100));
+                panel.setMaximumSize(new Dimension(600, 100));
                 panel.setBorder(BorderFactory.createBevelBorder(1));
                 JButton button = new JButton("<html>Set<br>watched</html>");
                 button.addActionListener(new EpisodeListener(currentEpisode));
@@ -75,7 +75,7 @@ public class Home extends JPanel {
                         df.format(currentEpisode.getEpisodeNumber()),
                         currentEpisode.getName() != null && !currentEpisode.getName().equals("") ? ":<br>" + currentEpisode.getName() : ""));
                 panel.add(label, BorderLayout.CENTER);
-                if(sh.getImage() != null && !sh.getImage().equalsIgnoreCase("N/A")){
+                if (sh.getImage() != null && !sh.getImage().equalsIgnoreCase("N/A")) {
                     ImageIcon imageIcon = null;
                     try {
                         URL url = new URL(sh.getImage());
@@ -85,8 +85,8 @@ public class Home extends JPanel {
                         imageIcon = null;
                         e.printStackTrace();
                     }
-                    if(imageIcon != null){
-                        JLabel imageLabel = new JLabel(new ImageIcon(imageIcon.getImage().getScaledInstance(35,40,Image.SCALE_SMOOTH)), JLabel.CENTER);
+                    if (imageIcon != null) {
+                        JLabel imageLabel = new JLabel(new ImageIcon(imageIcon.getImage().getScaledInstance(35, 40, Image.SCALE_SMOOTH)), JLabel.CENTER);
                         panel.add(imageLabel, BorderLayout.EAST);
                         ImageIcon finalImageIcon = imageIcon;
                         imageLabel.addMouseListener(new MouseAdapter() {
