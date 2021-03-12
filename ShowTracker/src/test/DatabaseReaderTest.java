@@ -17,6 +17,7 @@ import static junit.framework.TestCase.assertFalse;
  * @Author Robert
  */
 public class DatabaseReaderTest {
+    //SearchShow
     @Test
     public void searchShowResultNotNull(){
         DatabaseReader reader = new DatabaseReader();
@@ -37,6 +38,7 @@ public class DatabaseReaderTest {
         assertFalse(res.length == 0);
     }
 
+    //SearchShowID
     @Test
     public void searchShowIDCorrectId(){
         DatabaseReader reader = new DatabaseReader();
@@ -45,10 +47,13 @@ public class DatabaseReaderTest {
     }
     @Test
     public void searchShowIDWrongId(){
+        // vet ej om detta sker, kan ställa till med problem?
         DatabaseReader reader = new DatabaseReader();
         JSONObject object = reader.searchShowID("xd");
         assertNotNull(object);
     }
+
+    //generateShow
     @Test public void generateShow(){
         DatabaseReader reader = new DatabaseReader();
         String[] arr = new String[]{"Vikings", "tt2306299"};
