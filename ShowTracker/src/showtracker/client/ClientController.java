@@ -80,6 +80,7 @@ public class ClientController {
         generateNavigationButton("search", "SearchShows", pnlSearchShows);
         generateNavigationButton("exit", "Logout", pnlLogin);
         bottomPanel.updateUI();
+        frame.update(pnlSearchShows.getGraphics());
         frame.repaint();
         frame.revalidate();
 
