@@ -37,7 +37,13 @@ public class Home extends JPanel {
      * Metod för att rita upp de senaste avsnitten
      */
     void draw() {
+       // updateUI();
+
+
         scrollPane.getViewport().removeAll();
+        scrollPane.getViewport().updateUI();
+        //scrollPane.updateUI();
+
         //Message for user if there are no shows to display
         if (cc.getUser().getShows().isEmpty())
         {
@@ -94,6 +100,7 @@ public class Home extends JPanel {
                 JLabel lbWidth = new JLabel();
                 lbWidth.setPreferredSize(new Dimension(300, 1));
                 panel.add(lbWidth, BorderLayout.SOUTH);
+                panel.updateUI();
                 box.add(panel);
             }
         }

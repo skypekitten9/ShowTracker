@@ -23,6 +23,7 @@ public class SearchShows extends JPanel {
 
     private JTextField tfSearchBar = new JTextField("Enter name of the show here");
     private JTextField tfShowName = new JTextField();
+    private JButton searchBarBtn = new JButton("Search");
 
     private JPanel jpSearchBar = new JPanel();
     private JPanel jpSearchResult = new JPanel();
@@ -41,7 +42,27 @@ public class SearchShows extends JPanel {
         draw();
     }
 
-    private void draw() {
+    public void redrawComponents(){
+
+        tfSearchBar.updateUI();
+        jpSearchBar.updateUI();
+        jpSearchResult.updateUI();
+        jspSearchResult.updateUI();
+        searchBarBtn.updateUI();
+        updateUI();
+        removeAll();
+        draw();
+
+
+    }
+
+    public void draw() {
+
+//        tfSearchBar.updateUI();
+//        jpSearchBar.updateUI();
+//        jpSearchResult.updateUI();
+//        jspSearchResult.updateUI();
+
         drawSearchBarPanel();
 
         setLayout(new BorderLayout());
@@ -51,6 +72,8 @@ public class SearchShows extends JPanel {
         jspSearchResult.getVerticalScrollBar().setUnitIncrement(16);
 
     }
+
+
 
     private void drawSearchBarPanel() {
         jpSearchBar.setSize(350, 100);
@@ -70,7 +93,7 @@ public class SearchShows extends JPanel {
                 }
             }
         });
-        JButton searchBarBtn = new JButton("Search");
+
         searchBarBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

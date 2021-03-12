@@ -51,6 +51,7 @@ public class ClientController {
     }
 
     private void generateNavigationButton(String imagePath, String text, JPanel panel) {
+
         ImageIcon ii = new ImageIcon("images/" + imagePath + ".png");
         Image image = ii.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH);
         ii = new ImageIcon(image);
@@ -58,6 +59,32 @@ public class ClientController {
         button.addActionListener(e -> setPanel(text, null));
         bottomPanel.add(button);
         centerPanel.add(panel, text);
+    }
+
+    public void reDrawPanels(){
+        //TODO:
+        // ful vit kant i Home, sökrutan ändars ej till vit efter darkmode, bakgrunden vit i sökfliken
+        //målar om de olika panelerna
+
+        pnlProfile.draw();
+        pnlShowList.draw();
+        pnlHome.draw();
+        pnlSearchShows.redrawComponents();
+        pnlLogin.updateUI();
+        pnlLogin.draw();
+
+
+        //målar om knappmenyn
+        bottomPanel.removeAll();
+        generateNavigationButton("profile", "Profile", pnlProfile);
+        generateNavigationButton("list", "ShowList", pnlShowList);
+        generateNavigationButton("home", "Home", pnlHome);
+        generateNavigationButton("search", "SearchShows", pnlSearchShows);
+        generateNavigationButton("exit", "Logout", pnlLogin);
+        bottomPanel.updateUI();
+        frame.repaint();
+        frame.revalidate();
+
     }
 
     public void startApplication() {
@@ -211,7 +238,7 @@ public class ClientController {
     public static void main(String[] args) {
         FlatLightLaf.install();
         ClientController cc = new ClientController();
-        cc.setDarkmode(true); // true för mörk och false för ljus
+        cc.setDarkmode(false); // true för mörk och false för ljus
         cc.initiatePanels();
         cc.startApplication();
     }

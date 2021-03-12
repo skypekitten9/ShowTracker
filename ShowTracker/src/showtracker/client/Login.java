@@ -35,7 +35,7 @@ public class Login extends JPanel {
         setLayout(null);
         pnlLog.setLayout(null);
         pnlSign.setLayout(null);
-//        this.setBackground(Color.white);
+
         ImageIcon ii = new ImageIcon("images/show_transparant.png");
         Image image = ii.getImage().getScaledInstance(190, 150, Image.SCALE_SMOOTH);
         JLabel lbLogo = new JLabel(new ImageIcon(image));
@@ -43,11 +43,9 @@ public class Login extends JPanel {
         add(pnlSign);
         pnlLog.setBounds(38,190,260,130);
         pnlLog.setBorder(BorderFactory.createTitledBorder("Log in"));
-//        pnlLog.setBackground(Color.white);
 
         pnlSign.setBounds(38,328,260,60);
         pnlSign.setBorder(BorderFactory.createTitledBorder("New here?"));
-//        pnlSign.setBackground(Color.white);
 
         btLogIn.addActionListener(e -> checkUserLogin());
         btSignUp.addActionListener(e -> signUp());
@@ -57,7 +55,6 @@ public class Login extends JPanel {
         pfPassword.setBounds(35, 60, 200, 23);
         btLogIn.setBounds(75, 90, 120, 23);
         btSignUp.setBounds(75, 22, 120, 23);
-
 
         add(lbLogo);
         pnlLog.add(tfUsername);
@@ -69,12 +66,22 @@ public class Login extends JPanel {
     }
 
     public void draw() {
+        redrawInnerPanels();
         tfUsername.setText("Username");
         pfPassword.setText("Password123");
         tfUsername.selectAll();
         pfPassword.selectAll();
     }
 
+    public void redrawInnerPanels(){
+        tfUsername.updateUI();
+        pfPassword.updateUI();
+        btLogIn.updateUI();
+        btSignUp.updateUI();
+        pnlLog.updateUI();
+        pnlSign.updateUI();
+
+    }
 
     private void signUp() {
         
