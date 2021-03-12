@@ -49,6 +49,7 @@ public class ClientController {
     }
 
     private void generateNavigationButton(String imagePath, String text, JPanel panel) {
+
         ImageIcon ii = new ImageIcon("images/" + imagePath + ".png");
         Image image = ii.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH);
         ii = new ImageIcon(image);
@@ -56,6 +57,18 @@ public class ClientController {
         button.addActionListener(e -> setPanel(text, null));
         bottomPanel.add(button);
         centerPanel.add(panel, text);
+    }
+
+    public void reDrawPanels(){
+        //TODO:
+        // knappmenyn ritas ej om, bakgrunden på home ritas ej om, småpaneler på loginsidan ritas ej om
+        pnlProfile.draw();
+        pnlShowList.draw();
+
+        pnlSearchShows.draw();
+        pnlLogin.updateUI();
+        pnlLogin.draw();
+
     }
 
     public void startApplication() {
@@ -209,7 +222,7 @@ public class ClientController {
     public static void main(String[] args) {
         FlatLightLaf.install();
         ClientController cc = new ClientController();
-        cc.setDarkmode(true); // true för mörk och false för ljus
+        cc.setDarkmode(false); // true för mörk och false för ljus
         cc.initiatePanels();
         cc.startApplication();
     }

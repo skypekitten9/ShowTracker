@@ -41,7 +41,13 @@ public class SearchShows extends JPanel {
         draw();
     }
 
-    private void draw() {
+    public void draw() {
+        jpSearchBar.removeAll();
+        jpSearchBar.updateUI();
+        jpSearchResult.removeAll();
+        jpSearchResult.updateUI();
+        jspSearchResult.removeAll();
+        jspSearchResult.updateUI();
         drawSearchBarPanel();
 
         setLayout(new BorderLayout());

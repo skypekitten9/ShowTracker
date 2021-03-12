@@ -37,6 +37,7 @@ public class Home extends JPanel {
      * Metod för att rita upp de senaste avsnitten
      */
     void draw() {
+
         scrollPane.getViewport().removeAll();
         //Message for user if there are no shows to display
         if (cc.getUser().getShows().isEmpty())

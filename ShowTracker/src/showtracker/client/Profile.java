@@ -47,9 +47,30 @@ public class Profile extends JPanel {
     public JPanel northPanel(){
         JPanel pnlNorth = new JPanel();
         pnlNorth.setBackground(Color.ORANGE);
-
+        addListeners();
         pnlNorth.add(cbxSetDarkMode);
         return pnlNorth;
+    }
+
+    public void addListeners(){
+        cbxSetDarkMode.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                if(e.getStateChange() == ItemEvent.SELECTED){
+                    System.out.println("checkbox ticked");
+                    cc.setDarkmode(true);
+                    cc.reDrawPanels();
+
+
+
+
+                } else if(e.getStateChange() == ItemEvent.DESELECTED){
+                    System.out.println("checkbox unticked");
+                    cc.setDarkmode(false);
+                    cc.reDrawPanels();
+                }
+            }
+        });
     }
 
     public JPanel textFieldPanel() {
