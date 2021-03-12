@@ -62,12 +62,24 @@ public class ClientController {
     public void reDrawPanels(){
         //TODO:
         // knappmenyn ritas ej om, bakgrunden på home ritas ej om, småpaneler på loginsidan ritas ej om
+        //målar om de olika panelerna
         pnlProfile.draw();
         pnlShowList.draw();
-
+        pnlHome.draw();
         pnlSearchShows.draw();
         pnlLogin.updateUI();
         pnlLogin.draw();
+
+        //målar om knappmenyn
+        bottomPanel.removeAll();
+        generateNavigationButton("profile", "Profile", pnlProfile);
+        generateNavigationButton("list", "ShowList", pnlShowList);
+        generateNavigationButton("home", "Home", pnlHome);
+        generateNavigationButton("search", "SearchShows", pnlSearchShows);
+        generateNavigationButton("exit", "Logout", pnlLogin);
+        bottomPanel.updateUI();
+        frame.repaint();
+        frame.revalidate();
 
     }
 
