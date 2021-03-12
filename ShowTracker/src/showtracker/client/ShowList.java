@@ -27,7 +27,7 @@ public class ShowList extends JPanel {
     }
 
     public void draw() {
-        panelShowList.removeAll();
+//        panelShowList.removeAll();
         panelShowList.updateUI();
 
         Collections.sort(cc.getUser().getShows(), new Helper.NameComparator());

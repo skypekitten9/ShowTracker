@@ -61,13 +61,13 @@ public class ClientController {
 
     public void reDrawPanels(){
         //TODO:
-        // ful vit kant i Home, småpaneler på loginsidan ritas ej om, sökrutan ändars ej till vit efter darkmode
+        // ful vit kant i Home, sökrutan ändars ej till vit efter darkmode, bakgrunden vit i sökfliken
         //målar om de olika panelerna
 
         pnlProfile.draw();
         pnlShowList.draw();
         pnlHome.draw();
-        pnlSearchShows.draw();
+        pnlSearchShows.redrawComponents();
         pnlLogin.updateUI();
         pnlLogin.draw();
 
