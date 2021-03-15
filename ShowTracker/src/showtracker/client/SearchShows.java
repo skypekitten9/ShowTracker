@@ -51,7 +51,6 @@ public class SearchShows extends JPanel {
         jpMyOwnShowPanel.updateUI();
         jpMyShow.updateUI();
 
-
         jspSearchResult.updateUI();
 
         searchBarBtn.updateUI();

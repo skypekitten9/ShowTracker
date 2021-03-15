@@ -20,6 +20,7 @@ public class Profile extends JPanel {
     private User user;
     private Helper helper = new Helper();
 
+    private JLabel lblSetDarkmode = new JLabel("Darkmode");
     private JCheckBox cbxSetDarkMode = new JCheckBox();
     private ImageIcon profileImage = new ImageIcon("images/profile.png");
 
@@ -48,6 +49,7 @@ public class Profile extends JPanel {
         JPanel pnlNorth = new JPanel();
         pnlNorth.setBackground(Color.ORANGE);
         addListeners();
+        pnlNorth.add(lblSetDarkmode);
         pnlNorth.add(cbxSetDarkMode);
         return pnlNorth;
     }

@@ -27,10 +27,7 @@ public class ShowList extends JPanel {
     }
 
     public void draw() {
-        panelShowList.removeAll();
-        panelShowList.updateUI();
-
-        Collections.sort(cc.getUser().getShows(), new Helper.NameComparator());
+               Collections.sort(cc.getUser().getShows(), new Helper.NameComparator());
         drawShowList(cc.getUser().getShows());
 
         MyDocumentListener myDocumentListener = new MyDocumentListener(); // Sökrutan för söka bland sparade serier
@@ -40,6 +37,12 @@ public class ShowList extends JPanel {
         add(scrollPanel, BorderLayout.CENTER);
         scrollPanel.getVerticalScrollBar().setUnitIncrement(16);
 
+    }
+
+    public void redraw(){
+        //panelShowList.removeAll();
+        scrollPanel.getVerticalScrollBar().updateUI();
+        panelShowList.updateUI();
     }
 
     void drawShowList(ArrayList<Show> shows) {

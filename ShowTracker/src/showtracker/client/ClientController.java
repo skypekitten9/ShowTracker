@@ -67,8 +67,8 @@ public class ClientController {
         //målar om de olika panelerna
 
         pnlProfile.draw();
-        pnlShowList.draw();
-        pnlHome.draw();
+        pnlShowList.redraw();
+        pnlHome.redraw();
         pnlSearchShows.redrawComponents();
         pnlLogin.updateUI();
         pnlLogin.draw();
