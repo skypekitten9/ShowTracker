@@ -19,6 +19,7 @@ public class ShowList extends JPanel {
     private JPanel panelShowList = new JPanel();
     private ArrayList<JButton> btnArrayList = new ArrayList<>();
     private JScrollPane scrollPanel = new JScrollPane();
+    private MyDocumentListener myDocumentListener = new MyDocumentListener(); // Sökrutan för söka bland sparade serier
     private int x = 0;
 
     public ShowList(ClientController cc) {
@@ -27,10 +28,10 @@ public class ShowList extends JPanel {
     }
 
     public void draw() {
-               Collections.sort(cc.getUser().getShows(), new Helper.NameComparator());
+        Collections.sort(cc.getUser().getShows(), new Helper.NameComparator());
         drawShowList(cc.getUser().getShows());
 
-        MyDocumentListener myDocumentListener = new MyDocumentListener(); // Sökrutan för söka bland sparade serier
+
         setLayout(new BorderLayout());
         add(myDocumentListener, BorderLayout.NORTH);
 
@@ -39,7 +40,7 @@ public class ShowList extends JPanel {
 
     }
 
-    public void redraw(){
+    public void redraw() {
         //panelShowList.removeAll();
         scrollPanel.getVerticalScrollBar().updateUI();
         panelShowList.updateUI();
@@ -126,6 +127,7 @@ public class ShowList extends JPanel {
         public MyDocumentListener() {
             javax.swing.text.Document doc = this.getDocument();
             doc.addDocumentListener(this);
+            
         }
 
         public void changedUpdate(DocumentEvent e) {

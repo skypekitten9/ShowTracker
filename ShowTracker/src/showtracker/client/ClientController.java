@@ -57,11 +57,12 @@ public class ClientController {
         ii = new ImageIcon(image);
         JButton button = new JButton(ii);
         button.addActionListener(e -> setPanel(text, null));
+        button.setToolTipText(text);
         bottomPanel.add(button);
         centerPanel.add(panel, text);
     }
 
-    public void reDrawPanels(){
+    public void reDrawPanels() {
         //TODO:
         // ful vit kant i Home, sökrutan ändars ej till vit efter darkmode
         //målar om de olika panelerna
@@ -116,8 +117,7 @@ public class ClientController {
             pnlShowList.draw();
         else if (panel.equals("Profile")) {
             pnlProfile.draw();
-        }
-        else if (panel.equals("SearchShows"))
+        } else if (panel.equals("SearchShows"))
             pnlSearchShows.reset();
 
             //Logout Confirmation
@@ -141,8 +141,10 @@ public class ClientController {
 
     public void setButtonsEnabled(boolean enabled) {
         Component[] buttons = bottomPanel.getComponents();
-        for (Component c : buttons)
+        for (Component c : buttons) {
             c.setEnabled(enabled);
+        }
+
     }
 
     public User logIn(String username, String password) {
@@ -214,8 +216,8 @@ public class ClientController {
     }
 
 
-    public void setDarkmode(boolean bool){
-        if(bool==true){
+    public void setDarkmode(boolean bool) {
+        if (bool == true) {
             try {
                 UIManager.setLookAndFeel("com.formdev.flatlaf.FlatDarkLaf");
                 System.out.println("Vald UIManager: Darkmode");
