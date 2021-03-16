@@ -62,7 +62,7 @@ public class Home extends JPanel {
                 panel.setBorder(BorderFactory.createBevelBorder(1));
 
                 //knappen
-                JButton button = new JButton("<html>Set<br>watched</html>");
+                JButton button = new JButton("<html>Episode<br>watched</html>");
                 //panel.setPreferredSize(new Dimension(50,35));
                 button.addActionListener(new EpisodeListener(currentEpisode));
                 panel.add(button, BorderLayout.EAST);
