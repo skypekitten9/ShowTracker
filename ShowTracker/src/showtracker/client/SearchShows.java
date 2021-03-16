@@ -72,7 +72,6 @@ public class SearchShows extends JPanel {
 
     }
 
-
     private void drawSearchBarPanel() {
         jpSearchBar.setSize(350, 100);
         jpSearchBar.setLayout(new FlowLayout());
@@ -267,7 +266,6 @@ public class SearchShows extends JPanel {
         tfSearchBar.setText("Enter name of the show here");
     }
 
-
     private void createMyOwnShowPanel(String input) {
         try {
             int nbrOfSeasons = Integer.parseInt(input);
@@ -337,7 +335,6 @@ public class SearchShows extends JPanel {
             cc.getUser().addShow(show);
         }
     }
-
 
     private void showFlashMsg(String title, String msg) {
         JOptionPane pane = new JOptionPane(msg,

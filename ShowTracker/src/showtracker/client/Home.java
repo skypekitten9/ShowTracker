@@ -39,7 +39,6 @@ public class Home extends JPanel {
      * Metod för att rita upp de senaste avsnitten
      */
     void draw() {
-
         //Message for user if there are no shows to display
         if (cc.getUser().getShows().isEmpty()) {
             JLabel label = new JLabel("<html><p style = \"text-align:center;\"> You have nothing more to watch!<br>Add more shows by pressing the search button.</p></html>", JLabel.CENTER);
@@ -61,15 +60,20 @@ public class Home extends JPanel {
                 JPanel panel = new JPanel(new BorderLayout());
                 panel.setMaximumSize(new Dimension(600, 100));
                 panel.setBorder(BorderFactory.createBevelBorder(1));
+
+                //knappen
                 JButton button = new JButton("<html>Set<br>watched</html>");
                 button.addActionListener(new EpisodeListener(currentEpisode));
                 panel.add(button, BorderLayout.WEST);
-                JLabel label = new JLabel(String.format("<html><div style=\"width:150px;\">%s<br>Season %s, episode %s%s</div></html>",
-                        sh.getName(),
-                        df.format(currentEpisode.getSeasonNumber()),
-                        df.format(currentEpisode.getEpisodeNumber()),
-                        currentEpisode.getName() != null && !currentEpisode.getName().equals("") ? ":<br>" + currentEpisode.getName() : ""));
+
+                JLabel label = new JLabel(String.format("<html><div style=\"width:150px;\">%s<br>Season %s, episode %s%s<br>%s</div></html>",
+                        sh.getName(), //titel serie
+                        df.format(currentEpisode.getSeasonNumber()), //säsongsnummer
+                        df.format(currentEpisode.getEpisodeNumber()),//avsnittsnummer
+                        currentEpisode.getName() != null && !currentEpisode.getName().equals("") ? ":<br>" + currentEpisode.getName() : "", "Network: " + sh.getNetwork() + "") );// avsnittsnamn
                 panel.add(label, BorderLayout.CENTER);
+
+
                 if (sh.getImage() != null && !sh.getImage().equalsIgnoreCase("N/A")) {
                     ImageIcon imageIcon = null;
                     try {

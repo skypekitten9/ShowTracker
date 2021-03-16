@@ -12,10 +12,19 @@ public class Show implements Serializable {
     private LinkedList<Episode> episodes = new LinkedList<>();
     private Date lastWatched;
     private String image;
+    private String network;
 
     public Show(String name) {
         this.name = name;
         setLastWatched();
+    }
+
+    public String getNetwork() {
+        return network;
+    }
+
+    public void setNetwork(String network) {
+        this.network = network;
     }
 
     public void setTvdbId(String tvdbId) {

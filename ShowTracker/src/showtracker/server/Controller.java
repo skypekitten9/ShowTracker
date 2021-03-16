@@ -76,9 +76,8 @@ public class Controller {
         return returnEnvelope;
     }
 
-    private Envelope isUsernameAvailable(String userName)
-    {
-        File userFile = new File("files/users/" + userName + ".usr" );
+    private Envelope isUsernameAvailable(String userName) {
+        File userFile = new File("files/users/" + userName + ".usr");
         return new Envelope(!userFile.exists(), "reply");
     }
 
@@ -86,7 +85,7 @@ public class Controller {
         String password = users.get(userInfo[0]);
         if (password.equals(userInfo[1])) {
             users.put(userInfo[0], userInfo[2]);
-            Helper.writeToFile(users, "files/users/" + userInfo[0] + ".usr" ); ///
+            Helper.writeToFile(users, "files/users/" + userInfo[0] + ".usr"); ///
             return new Envelope("Password changed", "reply");
         } else {
             return new Envelope("No match with current password!", "reply");
@@ -139,17 +138,14 @@ public class Controller {
         gui.setActiveThreads(i);
     }
 
-
-
     public static void main(String[] args) {
         FlatLightLaf.install();
         try {
-            UIManager.setLookAndFeel( "com.formdev.flatlaf.FlatDarkLaf" ); //Funkar
-
+            UIManager.setLookAndFeel("com.formdev.flatlaf.FlatDarkLaf"); //Funkar
 
         } catch (Exception e) {
             e.printStackTrace();
-            System.err.println( "Failed to initialize LaF" );
+            System.err.println("Failed to initialize LaF");
         }
 
         Controller controller = new Controller();

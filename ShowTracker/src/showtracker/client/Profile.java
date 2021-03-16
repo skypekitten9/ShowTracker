@@ -40,7 +40,6 @@ public class Profile extends JPanel {
     }
 
     public void draw() {
-        pnlChangePassword.setBackground(Color.orange);
         user = cc.getUser();
         add(textFieldPanel(), BorderLayout.CENTER);
         changePanel();

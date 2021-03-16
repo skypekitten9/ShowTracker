@@ -15,6 +15,8 @@ public class ShowInfo extends JPanel {
     private JPanel mainPanel = new JPanel();
     private ArrayList<SeasonListener> listeners = new ArrayList<>();
     private Show show;
+    private JTextField tfNetwork = new JTextField();
+    private JButton btnNetwork = new JButton("Save");
 
     public ShowInfo(Show show, ClientController cc) {
         this.cc = cc;
@@ -54,7 +56,6 @@ public class ShowInfo extends JPanel {
         JScrollPane scrollPane = new JScrollPane();
         scrollPane.setViewportView(mainPanel);
         scrollPane.setLayout(new ScrollPaneLayout());
-        scrollPane.setBackground(Color.CYAN);
 
         mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.PAGE_AXIS));
         mainPanel.add(Box.createHorizontalGlue());
@@ -64,7 +65,16 @@ public class ShowInfo extends JPanel {
         headerBar.setBounds(0, 0, 500, 50);
         headerBar.setPreferredSize(new Dimension(500, 50));
 
-        headerBar.add(new JLabel(show.getName()), BorderLayout.NORTH);
+
+        JPanel pnlCenter = new JPanel(new BorderLayout());
+        pnlCenter.add(new JLabel(show.getName()), BorderLayout.NORTH);
+        pnlCenter.add(new JLabel("Network: "), BorderLayout.WEST);
+
+        pnlCenter.add(tfNetwork, BorderLayout.CENTER);
+        pnlCenter.add(btnNetwork, BorderLayout.EAST);
+
+
+        headerBar.add(pnlCenter);
         headerBar.add(btnBack, BorderLayout.WEST);
         headerBar.add(infoBtn, BorderLayout.EAST);
         headerBar.setBorder(new LineBorder(Color.black));
