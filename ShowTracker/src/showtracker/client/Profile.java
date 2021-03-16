@@ -20,6 +20,7 @@ public class Profile extends JPanel {
     private User user;
     private Helper helper = new Helper();
 
+    private JPanel pnlNorth = new JPanel();
     private JLabel lblSetDarkmode = new JLabel("Darkmode");
     private JCheckBox cbxSetDarkMode = new JCheckBox();
     private ImageIcon profileImage = new ImageIcon("images/profile.png");
@@ -27,7 +28,11 @@ public class Profile extends JPanel {
     private JTextField tfConfirmPassword;
     private JPasswordField password;
 
-    private JPanel southPanel;
+    private JPanel panel = new JPanel();
+    private JLabel namn = new JLabel();
+    private JPanel pnlChangePassword = new JPanel();
+    private JButton btnChangePass = new JButton("Change Password?");
+    private JPanel southPanel = new JPanel(new BorderLayout());
 
     public Profile(ClientController cc) {
         this.cc = cc;
@@ -35,9 +40,7 @@ public class Profile extends JPanel {
     }
 
     public void draw() {
-        removeAll();
-        updateUI();
-
+        pnlChangePassword.setBackground(Color.orange);
         user = cc.getUser();
         add(textFieldPanel(), BorderLayout.CENTER);
         changePanel();
@@ -45,28 +48,35 @@ public class Profile extends JPanel {
         add(northPanel(), BorderLayout.NORTH);
     }
 
-    public JPanel northPanel(){
-        JPanel pnlNorth = new JPanel();
-        pnlNorth.setBackground(Color.ORANGE);
+    public void redraw() {
+        btnChangePass.updateUI();
+        pnlNorth.updateUI();
+        lblSetDarkmode.updateUI();
+        cbxSetDarkMode.updateUI();
+        panel.updateUI();
+        namn.updateUI();
+        southPanel.updateUI();
+        pnlChangePassword.updateUI();
+    }
+
+    public JPanel northPanel() {
         addListeners();
         pnlNorth.add(lblSetDarkmode);
         pnlNorth.add(cbxSetDarkMode);
         return pnlNorth;
     }
 
-    public void addListeners(){
+    public void addListeners() {
         cbxSetDarkMode.addItemListener(new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent e) {
-                if(e.getStateChange() == ItemEvent.SELECTED){
+                if (e.getStateChange() == ItemEvent.SELECTED) {
                     System.out.println("checkbox ticked");
                     cc.setDarkmode(true);
                     cc.reDrawPanels();
 
 
-
-
-                } else if(e.getStateChange() == ItemEvent.DESELECTED){
+                } else if (e.getStateChange() == ItemEvent.DESELECTED) {
                     System.out.println("checkbox unticked");
                     cc.setDarkmode(false);
                     cc.reDrawPanels();
@@ -77,11 +87,10 @@ public class Profile extends JPanel {
 
     public JPanel textFieldPanel() {
 
-        JPanel panel = new JPanel();
         panel.setLayout(null);
         Image image = profileImage.getImage().getScaledInstance(120, 120, Image.SCALE_SMOOTH);
         JLabel lblProfile = new JLabel(new ImageIcon(image));
-        JLabel namn = new JLabel("   Username:  " + user.getUserName());
+        namn.setText("   Username:  " + user.getUserName());
         lblProfile.setBounds(115, 10, 120, 120);
         namn.setBounds(90, 150, 130, 70);
 
@@ -93,14 +102,9 @@ public class Profile extends JPanel {
     }
 
     private void changePanel() {
-        southPanel = new JPanel(new BorderLayout());
-        JPanel panel = new JPanel();
-//        panel.setBackground(Color.WHITE);
-        JButton btnChangePass = new JButton("Change Password?");
-        panel.add(btnChangePass);
+        pnlChangePassword.add(btnChangePass);
 
-        southPanel.add(panel, BorderLayout.SOUTH);
-
+        southPanel.add(pnlChangePassword, BorderLayout.SOUTH);
 
         btnChangePass.addActionListener(new ActionListener() {
             @SuppressWarnings("static-access")

@@ -28,8 +28,7 @@ public class Controller {
 
         if (new File("files/users.obj").exists())
             users = (HashMap<String, String>) Helper.readFromFile("files/users.obj");
-        if (new File("files/token.obj").exists())
-            dbr.setToken((String) Helper.readFromFile("files/token.obj"));
+
     }
 
     Envelope receiveEnvelope(Envelope input) {
@@ -155,13 +154,5 @@ public class Controller {
 
         Controller controller = new Controller();
     }
-
-    // TODO: ta bort kod efter testning
-
-//    public String authenticateTheTVDB() {
-//        String token = dbr.authenticateTheTVDB();
-//        Helper.writeToFile(token, "files/token.obj");
-//        return token;
-//    }
 
 }

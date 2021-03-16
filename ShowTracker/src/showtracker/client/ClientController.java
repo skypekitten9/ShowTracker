@@ -1,8 +1,6 @@
 package showtracker.client;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 
@@ -63,11 +61,10 @@ public class ClientController {
     }
 
     public void reDrawPanels() {
-        //TODO:
-        // ful vit kant i Home, sökrutan ändars ej till vit efter darkmode
+
         //målar om de olika panelerna
 
-        pnlProfile.draw();
+        pnlProfile.redraw();
         pnlShowList.redraw();
         pnlHome.redraw();
         pnlSearchShows.redrawComponents();
@@ -214,7 +211,6 @@ public class ClientController {
     public void setUser(User user) {
         this.user = user;
     }
-
 
     public void setDarkmode(boolean bool) {
         if (bool == true) {
