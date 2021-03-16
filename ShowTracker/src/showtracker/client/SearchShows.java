@@ -146,6 +146,7 @@ public class SearchShows extends JPanel {
 
         for (String[] s : searchResults) {
             JPanel mainPanel = new JPanel();
+
             ImageIcon imageIcon = null;
             if (s[2] != null && !s[2].equalsIgnoreCase("N/A")) {
                 try {
@@ -182,7 +183,7 @@ public class SearchShows extends JPanel {
                     }
 
                 });
-                mainPanel.add(imageLabel, BorderLayout.EAST);
+                mainPanel.add(imageLabel, BorderLayout.WEST);
             }
 
 
@@ -190,6 +191,7 @@ public class SearchShows extends JPanel {
                     BorderFactory.createEmptyBorder(5, 5, 5, 5)));
 
             boolean finalAddStart = addStart;
+
             btnAdd.addActionListener(new ActionListener() {
                 boolean add = finalAddStart;
                 private String id = s[1];
@@ -212,16 +214,23 @@ public class SearchShows extends JPanel {
                     }
                     if (success) {
                         addRemove(s[1], btnAdd, add);
-                        showFlashMsg("Show added", showname + " is added to your list");
+                        if (add == false) {
+                            showFlashMsg("Show added", showname + " is added to your list");
+
+                        } else {
+                            showFlashMsg("Show removed", showname + " is removed from your list");
+                        }
+
                     } else add = true;
 
                 }
             });
-            mainPanel.add(btnAdd, BorderLayout.WEST);
+            mainPanel.add(btnAdd, BorderLayout.EAST);
             mainPanel.add(new JLabel(" " + s[0]), BorderLayout.CENTER);
 
             gbc.gridx = 0;
             gbc.weightx = 1;
+
             jpSearchResult.add(mainPanel, gbc);
         }
 
@@ -258,7 +267,6 @@ public class SearchShows extends JPanel {
             btnAdd.setText("Add");
             cc.getUser().removeShow(id);
         }
-
     }
 
     public void reset() {
