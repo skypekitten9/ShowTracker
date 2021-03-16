@@ -53,6 +53,8 @@ public class ShowInfo extends JPanel {
 
         });
 
+
+
         JScrollPane scrollPane = new JScrollPane();
         scrollPane.setViewportView(mainPanel);
         scrollPane.setLayout(new ScrollPaneLayout());
@@ -70,7 +72,9 @@ public class ShowInfo extends JPanel {
         pnlCenter.add(new JLabel(show.getName()), BorderLayout.NORTH);
         pnlCenter.add(new JLabel("Network: "), BorderLayout.WEST);
 
+        setNetworkTextField();
         pnlCenter.add(tfNetwork, BorderLayout.CENTER);
+        addListeners();
         pnlCenter.add(btnNetwork, BorderLayout.EAST);
 
 
@@ -83,6 +87,28 @@ public class ShowInfo extends JPanel {
         add(headerBar, BorderLayout.NORTH);
         add(scrollPane);
     }
+
+    private void setNetworkTextField() {
+        show.getNetwork();
+
+        if(show.getNetwork() == " ") {
+            tfNetwork.setText("Add network");
+        } else {
+            tfNetwork.setText(show.getNetwork());
+        }
+
+    }
+
+    private void addListeners() {
+        btnNetwork.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                show.setNetwork(tfNetwork.getText());
+                JOptionPane.showMessageDialog(null, "Network saved!");
+            }
+        });
+    }
+
 
     private void draw() {
 

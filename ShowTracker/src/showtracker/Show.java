@@ -20,6 +20,9 @@ public class Show implements Serializable {
     }
 
     public String getNetwork() {
+        if (network == null) {
+            return " ";
+        }
         return network;
     }
 
