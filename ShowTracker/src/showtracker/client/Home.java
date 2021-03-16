@@ -63,8 +63,9 @@ public class Home extends JPanel {
 
                 //knappen
                 JButton button = new JButton("<html>Set<br>watched</html>");
+                //panel.setPreferredSize(new Dimension(50,35));
                 button.addActionListener(new EpisodeListener(currentEpisode));
-                panel.add(button, BorderLayout.WEST);
+                panel.add(button, BorderLayout.EAST);
 
                 JLabel label = new JLabel(String.format("<html><div style=\"width:150px;\">%s<br>Season %s, episode %s%s<br>%s</div></html>",
                         sh.getName(), //titel serie
@@ -84,9 +85,11 @@ public class Home extends JPanel {
                         imageIcon = null;
                         e.printStackTrace();
                     }
-                    if (imageIcon != null) {
-                        JLabel imageLabel = new JLabel(new ImageIcon(imageIcon.getImage().getScaledInstance(35, 40, Image.SCALE_SMOOTH)), JLabel.CENTER);
-                        panel.add(imageLabel, BorderLayout.EAST);
+                    if (imageIcon != null) {//TODO: Fortsätta här!
+                        //JLabel imageLabel = new JLabel(new ImageIcon(imageIcon.getImage().getScaledInstance(35, 40, Image.SCALE_SMOOTH)), JLabel.CENTER);
+                        JLabel imageLabel = new JLabel(new ImageIcon(imageIcon.getImage().getScaledInstance(60, 70,0)), JLabel.CENTER);
+                        panel.setPreferredSize(new Dimension(50,50));
+                        panel.add(imageLabel, BorderLayout.WEST);
                         ImageIcon finalImageIcon = imageIcon;
                         imageLabel.addMouseListener(new MouseAdapter() {
                             @Override
