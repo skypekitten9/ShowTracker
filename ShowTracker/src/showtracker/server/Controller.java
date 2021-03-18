@@ -76,7 +76,7 @@ public class Controller {
         return returnEnvelope;
     }
 
-    private Envelope isUsernameAvailable(String userName) {
+    public Envelope isUsernameAvailable(String userName) {
         File userFile = new File("files/users/" + userName + ".usr");
         return new Envelope(!userFile.exists(), "reply");
     }
@@ -107,7 +107,7 @@ public class Controller {
         }
     }
 
-    private Envelope loginUser(String[] userInfo) {
+    public Envelope loginUser(String[] userInfo) {
         User user = null;
         String password = users.get(userInfo[0]);
         if (password != null && password.equals(userInfo[1]))
