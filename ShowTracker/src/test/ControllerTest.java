@@ -10,7 +10,7 @@ import static junit.framework.TestCase.assertEquals;
 /**
  * @Created 02/03/2021
  * @Project ShowTracker
- * @auther Mewk
+ * @auther Mewk, Robert
  */
 
 
@@ -31,22 +31,20 @@ public class ControllerTest {
     public void testSignUpUserDoNotExist() {
         Controller controller = new Controller();
         Envelope envelope;
-        String[] userInfo = { "Marianne", "Handboll1" };
+        String[] userInfo = { "TESTUSER1", "TestUser1" };
         envelope = controller.signUp(userInfo);
         assertEquals(("User registered"), envelope.getContent());
     }
 
-
     @Test
     //Kontrollerar typen av Envelopet
-    public void test1() {
+    public void signUpEnvelope() {
         Controller controller = new Controller();
         Envelope envelope;
         String[] userInfo = { "Marianne", "Handboll1" };
         envelope = controller.signUp(userInfo);
         assertEquals(("signin"), envelope.getType());
     }
-
 
     @Test
     //Kontrollerar typen av Envelopet
@@ -57,6 +55,8 @@ public class ControllerTest {
         envelope = controller.signUp(userInfo);
         assertEquals(("signin"), envelope.getType());
     }
+
+
 
 }
 
