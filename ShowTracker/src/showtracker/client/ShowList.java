@@ -21,6 +21,7 @@ public class ShowList extends JPanel {
     private JScrollPane scrollPanel = new JScrollPane();
     private MyDocumentListener myDocumentListener = new MyDocumentListener(); // Sökrutan för söka bland sparade serier
     private JLabel lblSearchSeries = new JLabel("Search your series: ");
+    private JPanel pnlSearch = new JPanel(new GridLayout(1,2));
     private int x = 0;
 
     public ShowList(ClientController cc) {
@@ -35,7 +36,7 @@ public class ShowList extends JPanel {
         myDocumentListener.setToolTipText("Search your shows");
 
         setLayout(new BorderLayout());
-        JPanel pnlSearch = new JPanel(new GridLayout(1,2));
+
         pnlSearch.add(lblSearchSeries);
         pnlSearch.add(myDocumentListener);
 
@@ -50,6 +51,7 @@ public class ShowList extends JPanel {
         scrollPanel.getVerticalScrollBar().updateUI();
         myDocumentListener.updateUI();
         panelShowList.updateUI();
+
     }
 
     void drawShowList(ArrayList<Show> shows) {
