@@ -172,7 +172,8 @@ public class SearchShows extends JPanel {
                 addStart = false;
             }
             JButton btnAdd = new JButton(buttonTag);
-            btnAdd.setPreferredSize(new Dimension(60,50));
+            btnAdd.setPreferredSize(new Dimension(70,50));
+            btnAdd.setFont(new Font("Arial", Font.PLAIN, 10));
 
             if (imageIcon != null) {
                 JLabel imageLabel = new JLabel(new ImageIcon(imageIcon.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH)), JLabel.CENTER);
@@ -186,7 +187,7 @@ public class SearchShows extends JPanel {
                 });
                 mainPanel.add(imageLabel, BorderLayout.WEST);
             }
-            
+
             boolean finalAddStart = addStart;
 
             btnAdd.addActionListener(new ActionListener() {
