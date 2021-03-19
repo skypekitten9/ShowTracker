@@ -51,6 +51,8 @@ public class ShowList extends JPanel {
         scrollPanel.getVerticalScrollBar().updateUI();
         myDocumentListener.updateUI();
         panelShowList.updateUI();
+        pnlSearch.updateUI();
+        lblSearchSeries.updateUI();
 
     }
 
