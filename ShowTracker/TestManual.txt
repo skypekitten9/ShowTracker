@@ -1,0 +1,2 @@
+1. Se till så att JUnit finns med i classpath. IntelliJ: https://www.jetbrains.com/help/idea/testing.html#add-testing-libraries
+2. Kör testerna.
