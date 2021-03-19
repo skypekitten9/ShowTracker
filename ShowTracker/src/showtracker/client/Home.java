@@ -85,7 +85,7 @@ public class Home extends JPanel {
                         imageIcon = null;
                         e.printStackTrace();
                     }
-                    if (imageIcon != null) {//TODO: Fortsätta här!
+                    if (imageIcon != null) {
                         //JLabel imageLabel = new JLabel(new ImageIcon(imageIcon.getImage().getScaledInstance(35, 40, Image.SCALE_SMOOTH)), JLabel.CENTER);
                         JLabel imageLabel = new JLabel(new ImageIcon(imageIcon.getImage().getScaledInstance(60, 70,0)), JLabel.CENTER);
                         panel.setPreferredSize(new Dimension(50,50));
@@ -115,7 +115,6 @@ public class Home extends JPanel {
     public void redraw(){
         this.updateUI();
         scrollPane.updateUI();
-        //scrollPane.getViewport().removeAll();
         scrollPane.getVerticalScrollBar().updateUI();
         scrollPane.getViewport().updateUI();
     }

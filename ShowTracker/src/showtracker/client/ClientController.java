@@ -234,10 +234,6 @@ public class ClientController {
         }
     }
 
-    public Connection getConnection(){
-        return connection;
-    }
-
     public static void main(String[] args) {
         FlatLightLaf.install();
         ClientController cc = new ClientController();
